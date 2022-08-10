@@ -1,0 +1,31 @@
+-- Codigo 1
+
+{Calculador de media}
+
+const: inteiro total << 2;
+
+procedimento: resultado_passou()
+comece
+	imprima('Aprovado!');
+termine
+
+procedimento: resultado_rep()
+comece
+	imprima ('Prova extra');
+termine
+
+funcao: real calcularMedia (inteiro a | inteiro b)
+comece
+	M = (a + b) / total
+termine
+
+procedimento: main()
+comece
+	var: inteiro a << leia();
+	var: inteiro b << leia();
+
+	var: real media << calcularMedia(a | b);
+
+	se (media >= 5) imprima('Aprovado!') senao imprima('Repovado!');
+	
+termine

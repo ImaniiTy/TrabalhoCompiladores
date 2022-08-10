@@ -1,0 +1,7 @@
+procedimento: diferentes()
+comece 
+se nao(a > 0 e b > 0) e (a > 0 ou b > 0)
+    imprima ('verdade');
+senao
+    imprima ('falso');
+termine

@@ -1,0 +1,66 @@
+Package sarapatel;
+
+Helpers
+    tudo = [0 .. 0xFFFF];
+    digito = ['0' .. '9'];
+    letra_min = ['a'..'z'];
+    letra_mai = ['A'..'Z'];
+    letra = letra_min | letra_mai;
+    id_letra = letra | '_';
+    id_char  = letra | '_' | digito;
+    espaco = ' ';
+    rc = 13;
+    nl = 10;
+    tab = 9;
+    eol = rc nl | rc | nl;
+ 
+Tokens
+    numero_int = digito+;
+    numero_real = digito+ ',' digito+;
+    numero_binario = '0b' ('0' | '1')+;
+    decl_var = 'var';
+    decl_const = 'const';
+    decl_procedimento = 'procedimento';
+    decl_funcao = 'funcao';
+    cmd_se = 'se';
+    cmd_senao = 'senao';
+    cmd_enquanto = 'enquanto';
+    tipo_inteiro = 'inteiro';
+    tipo_booleano = 'booleano';
+    tipo_real = 'real';
+    tipo_cadeia = 'cadeia';
+    inicio_bloco = 'comece';
+    fim_bloco = 'termine';
+    par_esq = '(';
+    par_dir = ')';
+    col_esq = '[';
+    col_dir = ']';
+    aspas_simples = ''';
+    aspas_dupla = '"';
+    atribuicao = '<<';
+    barra = '|';
+    doispontos = ':';
+    pontovirgula = ';';
+    igual = '=';
+    maior_igual = '>=';
+    maior = '>';
+    negacao = 'nao';
+    comp_e = 'e';
+    comp_ou = 'ou';
+    soma = '+';
+    menos = '-';
+    mult = '*';
+    div = '/';
+    mod = '%';
+    verdade = 'verdade';
+    falso = 'falso';
+    vazio = (espaco | rc | nl | tab)+;
+    cadeia = ''' [tudo - ''']* ''';
+    comentario_linha = '--' [tudo - [rc + nl]]* eol;
+    comentario_bloco = '{' tudo* '}';
+    id = id_letra id_char*;
+
+
+Ignored Tokens
+    vazio;
+

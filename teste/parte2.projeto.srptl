@@ -1,0 +1,30 @@
+procedimento: trocar(inteiro[] arr | inteiro a | inteiro b)
+comece
+    var: inteiro temp << arr[a];
+    arr[a] << arr[b];
+    arr[b] << temp;
+termine
+
+procedimento: main()
+comece
+	var: inteiro arr[5] << [ i | leia() ];
+	
+	var: booleano trocou << verdade;
+	
+	enquanto (trocou)
+	comece
+		trocou << falso;
+		var: inteiro i << 1;
+
+		enquanto (5 > i)
+		comece
+			se (arr[i-1] > arr[i])
+			comece
+				trocar(arr | arr[i-1] | arr[i]);
+				trocou << verdade;
+			termine
+		termine
+	termine
+
+	imprima(arr);
+termine
