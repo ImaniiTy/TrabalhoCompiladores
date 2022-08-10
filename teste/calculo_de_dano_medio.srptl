@@ -1,0 +1,45 @@
+{
+Exemplo de código Sarapatel
+Por Luan Melo Guimarães
+}
+
+{
+Função que calcula o dano medio de um ataque baseado na quantidade de dados 
+rolados e no número de lados do dado.
+}
+funcao: real dano_medio (inteiro quantidade | inteiro dado)
+	(quantidade + (quantidade * dado))/2
+
+-- Procedimento que calcula e imprime o dano médio de um ataque baseado na quantidade de diferentes dados;
+procedimento: dano_medio_2 (inteiro d4 | inteiro d6 | inteiro d8 | inteiro d10 | inteiro d12 | inteiro d20)
+	comece
+		var: real _dano << 0]
+		
+		se (d4 > 0) dano << dano + (2,50 * d4);
+		
+		se (d6 > 0) dano << dano + (3,5 * d6);
+		
+		se (d8 > 0) dano << dano + (4,5 * d8);
+		
+		se (d10 > 0) dano << dano + (5,5 * d10);
+		
+		se (d12 > 0) dano << dano + (6,5 * d12);
+
+		se (d20 > 0) dano << dano + (10,5 * d20);
+		
+		imprima ('Dano médio do ataque é ');
+		imprima (dano);
+		
+	termine
+
+>procedimento: principal ()
+	comece
+		
+		--Imprimindo o dano médio de um ataque com o primeiro método;
+		imprima ('Dano do ataque é ');
+		imprima (dano_medio;)
+		
+		--Imprimindo o dano médio de um ataque com o segundo método;
+		dano_medio_2 (0 | 3 | 2 | 0 | 0 );
+		
+	termine

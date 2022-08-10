@@ -9,7 +9,7 @@ public class Main
 	{
 		try
 		{
-			String arquivo = "teste/parte3.projeto.srptl";
+			String arquivo = "teste/criacao_de_personagem.srptl";
 
 			Lexer lexer =
 					new Lexer(

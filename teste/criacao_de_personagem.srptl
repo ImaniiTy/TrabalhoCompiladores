@@ -1,0 +1,78 @@
+{
+Exemplo de código Sarapatel
+Por Marcelo Augusto Santana
+}
+
+funcao: booleano _eh_verdade ()
+	verdadeiro;
+
+{
+funcao abaixo calcula o modificador de um dado atributo de um personagem
+}
+
+funcao: inteiro calculo_de_modificador (inteiro atributo)
+	comece
+		(atributo - 10)/2;
+	termine
+
+{
+Funcao abaixo calcula os pontos de vida de um personagem baseado em seu nivel, seu modificador de vitalidade e
+o dado de vida da sua classe
+}	
+funcao:  inteiro calculo_de_pv (inteiro vitalidade | inteiro nivel | vida_da_classe)
+	(vida_da_classe + vitalidade) * nivel;
+	
+{
+Procedimento sequencial simples para imprimir as informações sobre o personagem
+}
+procedimento: imprimir_pj (cadeia pj | inteiro pv | inteiro [] atr | inteiro nvl)
+	comece
+		var: inteiro i << 0;
+		
+		imprima ('O personagem ');
+		imprima (pj);
+		imprima (' tem ');
+		imprima (pv);
+		imprima (' pontos de vida no nível );
+		imprima (nvl);
+		
+		imprima ('Seus atributos são:');
+		imprima ('\n Força: ');
+		imprima (atr[0]);
+		
+		imprima ('\n Agilidade: ');
+		imprima (atr[2]);
+		
+		imprima ('\n Vitalidade: ');
+		imprima (atr[3]);
+		
+		imprima ('\n Mente: ');
+		imprima (atr[4]);
+		
+	termine
+	
+{
+Procedimento que dá inicio a execução do programa
+}
+>> procedimento: principal ()
+	Comece
+		var: inteiro a << 0; -- inteiro auxiliar que será utilizado a frente
+		
+		var: cadeia personagem << 'Bjorn Warhammer'; -- variavel que armazena o nome do personagem
+		var: inteiro atributo [4] << [i | se (i % 2 = 0) 12+i senao 12-i]; -- vetor com os atributos dos personagens
+		var: inteiro modificadores [0b100]; -- vetor com os modificadores de atributo do personagem
+		var: inteiro pontos_de_vida; 
+		var: inteiro nvl << leia();
+
+		const: inteiro NroDeAtributos << tamanho (atributo); -- Constante que define o número de atributos do personagem
+		
+		-- pequena rotina para calcular os modificadores de atributo
+		enquanto (NroDeAtributos > a)
+			comece
+				modificadores[a] << calculo_de_modificador (atributo[a]);
+			termine
+			
+		pontos_de_vida << calculo_de_pv (modificadores[3] | nvl | 8);
+		
+		imprimir_pj (personagem | pontos_de_vida | atributo | nvl)
+	Termine

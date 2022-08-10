@@ -1,0 +1,22 @@
+{
+Exemplo de código Sarapatel
+Por Madson Oliveira da Silva
+}
+
+--Procedimento que verifica se o personagem se mantem vivo ou se atingiu alguma condição de morte
+-- (a) 0 pontos de vida e falhou em 3 testes contra a morte ou (b) Atingiu o limite de 7 níveis de exaustão
+
+procedimento: verificar_morte (inteiro pv | inteiro exaustao | inteiro falhas_morte)
+	comece
+		se ( ( (0 >= pv) e (falhas_morte = 3) ) ou (nao (6 > exaustao) ) )
+			imprima ('Personagem morreu');
+		senao
+			imprima ('Personagem sobreviveu');
+	termine
+
+>procedimento: principal
+	comece
+		verificar_morte (3 | 0 | 0);
+		verificar_morte (0 | 3 | 0);
+		verificar_morte (15 | 0 | 7);
+	termine
