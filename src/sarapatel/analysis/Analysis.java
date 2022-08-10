@@ -31,8 +31,6 @@ public interface Analysis extends Switch
     void caseTParDir(TParDir node);
     void caseTColEsq(TColEsq node);
     void caseTColDir(TColDir node);
-    void caseTAspasSimples(TAspasSimples node);
-    void caseTAspasDupla(TAspasDupla node);
     void caseTAtribuicao(TAtribuicao node);
     void caseTBarra(TBarra node);
     void caseTDoispontos(TDoispontos node);

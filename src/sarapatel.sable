@@ -35,8 +35,6 @@ Tokens
     par_dir = ')';
     col_esq = '[';
     col_dir = ']';
-    aspas_simples = ''';
-    aspas_dupla = '"';
     atribuicao = '<<';
     barra = '|';
     doispontos = ':';
