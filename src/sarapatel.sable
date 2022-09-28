@@ -35,10 +35,13 @@ Tokens
     par_dir = ')';
     col_esq = '[';
     col_dir = ']';
+    abre_comentario = '{';
+    fecha_comentario = '}';
     atribuicao = '<<';
+    partida = '>>';
     barra = '|';
-    doispontos = ':';
-    pontovirgula = ';';
+    dois_pontos = ':';
+    ponto_virgula = ';';
     igual = '=';
     maior_igual = '>=';
     maior = '>';
@@ -55,10 +58,71 @@ Tokens
     vazio = (espaco | rc | nl | tab)+;
     cadeia = ''' [tudo - ''']* ''';
     comentario_linha = '--' [tudo - [rc + nl]]* eol;
-    comentario_bloco = '{' tudo* '}';
+    comentario_bloco = '{' [tudo - '}']* '}';
     id = id_letra id_char*;
 
 
 Ignored Tokens
     vazio;
 
+Productions
+    entrada = 
+        {programa} programa*;
+
+    programa =
+        {prod_dec_var} prod_dec_var
+        |{prod_dec_const} prod_dec_const;
+
+    prod_dec_var =
+        {var_id} decl_var dois_pontos tipo id ponto_virgula
+        |{var_id_atribuicao} decl_var dois_pontos tipo id_atribuicao ponto_virgula;
+
+    prod_dec_const =
+        {constante} decl_const dois_pontos tipo id_atribuicao ponto_virgula;
+
+    id_atribuicao =
+        {id_atribuicao} id atribuicao prio0;
+
+    tipo =
+        {tipo_inteiro} tipo_inteiro
+        |{tipo_booleano} tipo_booleano
+        |{tipo_real} tipo_real
+        |{tipo_cadeia} tipo_cadeia; 
+    
+    prio0 =
+        {prio1} prio1 
+        |{comp_ou} prio0 comp_ou prio1;
+
+    prio1 =
+        {prio2} prio2
+        |{comp_e} prio1 comp_e prio2;
+
+    prio2 =
+        {prio3} prio3
+        |{igual} prio2 igual prio3;
+
+    prio3 =
+        {prio4} prio4
+        |{maior_igual} prio3 maior_igual prio4
+        |{maior} prio3 maior prio4;
+    
+    prio4 =
+        {prio5} prio5
+        |{soma} prio4 soma prio5
+        |{menos} prio4 menos prio5;
+
+    prio5 =
+        {prio6} prio6
+        |{mult} prio5 mult prio6
+        |{div} prio5 div prio6
+        |{mod} prio5 mod prio6;
+        
+    prio6 =
+        {prio7} prio7
+        |{negacao} prio6 negacao prio7;
+
+    prio7 =
+        {numero_int} numero_int
+        |{numero_real} numero_real
+        |{booleano} verdade | falso
+        |{par} par_esq prio0 par_dir;

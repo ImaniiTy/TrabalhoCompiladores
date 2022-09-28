@@ -5,16 +5,16 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TDoisPontos extends Token
+public final class TFechaComentario extends Token
 {
-    public TDoisPontos()
+    public TFechaComentario()
     {
-        super.setText(":");
+        super.setText("}");
     }
 
-    public TDoisPontos(int line, int pos)
+    public TFechaComentario(int line, int pos)
     {
-        super.setText(":");
+        super.setText("}");
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,18 @@ public final class TDoisPontos extends Token
     @Override
     public Object clone()
     {
-      return new TDoisPontos(getLine(), getPos());
+      return new TFechaComentario(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTDoisPontos(this);
+        ((Analysis) sw).caseTFechaComentario(this);
     }
 
     @Override
     public void setText(@SuppressWarnings("unused") String text)
     {
-        throw new RuntimeException("Cannot change TDoisPontos text.");
+        throw new RuntimeException("Cannot change TFechaComentario text.");
     }
 }

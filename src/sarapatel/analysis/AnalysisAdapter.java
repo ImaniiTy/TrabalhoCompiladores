@@ -69,6 +69,216 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProgramaEntrada(AProgramaEntrada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProdDecVarPrograma(AProdDecVarPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProdDecConstPrograma(AProdDecConstPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarIdProdDecVar(AVarIdProdDecVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarIdAtribuicaoProdDecVar(AVarIdAtribuicaoProdDecVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAConstanteProdDecConst(AConstanteProdDecConst node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdAtribuicaoIdAtribuicao(AIdAtribuicaoIdAtribuicao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoInteiroTipo(ATipoInteiroTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoBooleanoTipo(ATipoBooleanoTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoRealTipo(ATipoRealTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoCadeiaTipo(ATipoCadeiaTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio1Prio0(APrio1Prio0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACompOuPrio0(ACompOuPrio0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio2Prio1(APrio2Prio1 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACompEPrio1(ACompEPrio1 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio3Prio2(APrio3Prio2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIgualPrio2(AIgualPrio2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio4Prio3(APrio4Prio3 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorIgualPrio3(AMaiorIgualPrio3 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorPrio3(AMaiorPrio3 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio5Prio4(APrio5Prio4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASomaPrio4(ASomaPrio4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenosPrio4(AMenosPrio4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio6Prio5(APrio6Prio5 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultPrio5(AMultPrio5 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADivPrio5(ADivPrio5 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAModPrio5(AModPrio5 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio7Prio6(APrio7Prio6 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANegacaoPrio6(ANegacaoPrio6 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANumeroIntPrio7(ANumeroIntPrio7 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANumeroRealPrio7(ANumeroRealPrio7 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABooleanoPrio7(ABooleanoPrio7 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrio7(APrio7 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParPrio7(AParPrio7 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTNumeroInt(TNumeroInt node)
     {
         defaultCase(node);
@@ -189,7 +399,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTAbreComentario(TAbreComentario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTFechaComentario(TFechaComentario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTAtribuicao(TAtribuicao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTPartida(TPartida node)
     {
         defaultCase(node);
     }
@@ -201,13 +429,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTDoispontos(TDoispontos node)
+    public void caseTDoisPontos(TDoisPontos node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTPontovirgula(TPontovirgula node)
+    public void caseTPontoVirgula(TPontoVirgula node)
     {
         defaultCase(node);
     }
