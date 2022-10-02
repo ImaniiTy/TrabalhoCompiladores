@@ -5,69 +5,44 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParPrio7 extends PPrio7
+public final class ACompOuExp extends PExp
 {
-    private TParEsq _parEsq_;
     private PExp _exp_;
-    private TParDir _parDir_;
+    private TCompOu _compOu_;
+    private PPrio1 _prio1_;
 
-    public AParPrio7()
+    public ACompOuExp()
     {
         // Constructor
     }
 
-    public AParPrio7(
-        @SuppressWarnings("hiding") TParEsq _parEsq_,
+    public ACompOuExp(
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParDir _parDir_)
+        @SuppressWarnings("hiding") TCompOu _compOu_,
+        @SuppressWarnings("hiding") PPrio1 _prio1_)
     {
         // Constructor
-        setParEsq(_parEsq_);
-
         setExp(_exp_);
 
-        setParDir(_parDir_);
+        setCompOu(_compOu_);
+
+        setPrio1(_prio1_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AParPrio7(
-            cloneNode(this._parEsq_),
+        return new ACompOuExp(
             cloneNode(this._exp_),
-            cloneNode(this._parDir_));
+            cloneNode(this._compOu_),
+            cloneNode(this._prio1_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParPrio7(this);
-    }
-
-    public TParEsq getParEsq()
-    {
-        return this._parEsq_;
-    }
-
-    public void setParEsq(TParEsq node)
-    {
-        if(this._parEsq_ != null)
-        {
-            this._parEsq_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parEsq_ = node;
+        ((Analysis) sw).caseACompOuExp(this);
     }
 
     public PExp getExp()
@@ -95,16 +70,16 @@ public final class AParPrio7 extends PPrio7
         this._exp_ = node;
     }
 
-    public TParDir getParDir()
+    public TCompOu getCompOu()
     {
-        return this._parDir_;
+        return this._compOu_;
     }
 
-    public void setParDir(TParDir node)
+    public void setCompOu(TCompOu node)
     {
-        if(this._parDir_ != null)
+        if(this._compOu_ != null)
         {
-            this._parDir_.parent(null);
+            this._compOu_.parent(null);
         }
 
         if(node != null)
@@ -117,37 +92,62 @@ public final class AParPrio7 extends PPrio7
             node.parent(this);
         }
 
-        this._parDir_ = node;
+        this._compOu_ = node;
+    }
+
+    public PPrio1 getPrio1()
+    {
+        return this._prio1_;
+    }
+
+    public void setPrio1(PPrio1 node)
+    {
+        if(this._prio1_ != null)
+        {
+            this._prio1_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._prio1_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._parEsq_)
             + toString(this._exp_)
-            + toString(this._parDir_);
+            + toString(this._compOu_)
+            + toString(this._prio1_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._parEsq_ == child)
-        {
-            this._parEsq_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
             return;
         }
 
-        if(this._parDir_ == child)
+        if(this._compOu_ == child)
         {
-            this._parDir_ = null;
+            this._compOu_ = null;
+            return;
+        }
+
+        if(this._prio1_ == child)
+        {
+            this._prio1_ = null;
             return;
         }
 
@@ -158,21 +158,21 @@ public final class AParPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._parEsq_ == oldChild)
-        {
-            setParEsq((TParEsq) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
             return;
         }
 
-        if(this._parDir_ == oldChild)
+        if(this._compOu_ == oldChild)
         {
-            setParDir((TParDir) newChild);
+            setCompOu((TCompOu) newChild);
+            return;
+        }
+
+        if(this._prio1_ == oldChild)
+        {
+            setPrio1((PPrio1) newChild);
             return;
         }
 

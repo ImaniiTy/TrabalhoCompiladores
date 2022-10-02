@@ -5,26 +5,30 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParPrio7 extends PPrio7
+public final class AChamadaProcedimentoChamadaProcedimento extends PChamadaProcedimento
 {
+    private TId _id_;
     private TParEsq _parEsq_;
-    private PExp _exp_;
+    private PListaExp _listaExp_;
     private TParDir _parDir_;
 
-    public AParPrio7()
+    public AChamadaProcedimentoChamadaProcedimento()
     {
         // Constructor
     }
 
-    public AParPrio7(
+    public AChamadaProcedimentoChamadaProcedimento(
+        @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") TParEsq _parEsq_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PListaExp _listaExp_,
         @SuppressWarnings("hiding") TParDir _parDir_)
     {
         // Constructor
+        setId(_id_);
+
         setParEsq(_parEsq_);
 
-        setExp(_exp_);
+        setListaExp(_listaExp_);
 
         setParDir(_parDir_);
 
@@ -33,16 +37,42 @@ public final class AParPrio7 extends PPrio7
     @Override
     public Object clone()
     {
-        return new AParPrio7(
+        return new AChamadaProcedimentoChamadaProcedimento(
+            cloneNode(this._id_),
             cloneNode(this._parEsq_),
-            cloneNode(this._exp_),
+            cloneNode(this._listaExp_),
             cloneNode(this._parDir_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParPrio7(this);
+        ((Analysis) sw).caseAChamadaProcedimentoChamadaProcedimento(this);
+    }
+
+    public TId getId()
+    {
+        return this._id_;
+    }
+
+    public void setId(TId node)
+    {
+        if(this._id_ != null)
+        {
+            this._id_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._id_ = node;
     }
 
     public TParEsq getParEsq()
@@ -70,16 +100,16 @@ public final class AParPrio7 extends PPrio7
         this._parEsq_ = node;
     }
 
-    public PExp getExp()
+    public PListaExp getListaExp()
     {
-        return this._exp_;
+        return this._listaExp_;
     }
 
-    public void setExp(PExp node)
+    public void setListaExp(PListaExp node)
     {
-        if(this._exp_ != null)
+        if(this._listaExp_ != null)
         {
-            this._exp_.parent(null);
+            this._listaExp_.parent(null);
         }
 
         if(node != null)
@@ -92,7 +122,7 @@ public final class AParPrio7 extends PPrio7
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._listaExp_ = node;
     }
 
     public TParDir getParDir()
@@ -124,8 +154,9 @@ public final class AParPrio7 extends PPrio7
     public String toString()
     {
         return ""
+            + toString(this._id_)
             + toString(this._parEsq_)
-            + toString(this._exp_)
+            + toString(this._listaExp_)
             + toString(this._parDir_);
     }
 
@@ -133,15 +164,21 @@ public final class AParPrio7 extends PPrio7
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._id_ == child)
+        {
+            this._id_ = null;
+            return;
+        }
+
         if(this._parEsq_ == child)
         {
             this._parEsq_ = null;
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._listaExp_ == child)
         {
-            this._exp_ = null;
+            this._listaExp_ = null;
             return;
         }
 
@@ -158,15 +195,21 @@ public final class AParPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._id_ == oldChild)
+        {
+            setId((TId) newChild);
+            return;
+        }
+
         if(this._parEsq_ == oldChild)
         {
             setParEsq((TParEsq) newChild);
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._listaExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setListaExp((PListaExp) newChild);
             return;
         }
 

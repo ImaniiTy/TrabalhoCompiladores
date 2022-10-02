@@ -5,56 +5,61 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParPrio7 extends PPrio7
+public final class ATipoExpTipo extends PTipo
 {
-    private TParEsq _parEsq_;
+    private PTipo _tipo_;
+    private TColEsq _colEsq_;
     private PExp _exp_;
-    private TParDir _parDir_;
+    private TColDir _colDir_;
 
-    public AParPrio7()
+    public ATipoExpTipo()
     {
         // Constructor
     }
 
-    public AParPrio7(
-        @SuppressWarnings("hiding") TParEsq _parEsq_,
+    public ATipoExpTipo(
+        @SuppressWarnings("hiding") PTipo _tipo_,
+        @SuppressWarnings("hiding") TColEsq _colEsq_,
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParDir _parDir_)
+        @SuppressWarnings("hiding") TColDir _colDir_)
     {
         // Constructor
-        setParEsq(_parEsq_);
+        setTipo(_tipo_);
+
+        setColEsq(_colEsq_);
 
         setExp(_exp_);
 
-        setParDir(_parDir_);
+        setColDir(_colDir_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AParPrio7(
-            cloneNode(this._parEsq_),
+        return new ATipoExpTipo(
+            cloneNode(this._tipo_),
+            cloneNode(this._colEsq_),
             cloneNode(this._exp_),
-            cloneNode(this._parDir_));
+            cloneNode(this._colDir_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParPrio7(this);
+        ((Analysis) sw).caseATipoExpTipo(this);
     }
 
-    public TParEsq getParEsq()
+    public PTipo getTipo()
     {
-        return this._parEsq_;
+        return this._tipo_;
     }
 
-    public void setParEsq(TParEsq node)
+    public void setTipo(PTipo node)
     {
-        if(this._parEsq_ != null)
+        if(this._tipo_ != null)
         {
-            this._parEsq_.parent(null);
+            this._tipo_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +72,32 @@ public final class AParPrio7 extends PPrio7
             node.parent(this);
         }
 
-        this._parEsq_ = node;
+        this._tipo_ = node;
+    }
+
+    public TColEsq getColEsq()
+    {
+        return this._colEsq_;
+    }
+
+    public void setColEsq(TColEsq node)
+    {
+        if(this._colEsq_ != null)
+        {
+            this._colEsq_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._colEsq_ = node;
     }
 
     public PExp getExp()
@@ -95,16 +125,16 @@ public final class AParPrio7 extends PPrio7
         this._exp_ = node;
     }
 
-    public TParDir getParDir()
+    public TColDir getColDir()
     {
-        return this._parDir_;
+        return this._colDir_;
     }
 
-    public void setParDir(TParDir node)
+    public void setColDir(TColDir node)
     {
-        if(this._parDir_ != null)
+        if(this._colDir_ != null)
         {
-            this._parDir_.parent(null);
+            this._colDir_.parent(null);
         }
 
         if(node != null)
@@ -117,25 +147,32 @@ public final class AParPrio7 extends PPrio7
             node.parent(this);
         }
 
-        this._parDir_ = node;
+        this._colDir_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._parEsq_)
+            + toString(this._tipo_)
+            + toString(this._colEsq_)
             + toString(this._exp_)
-            + toString(this._parDir_);
+            + toString(this._colDir_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._parEsq_ == child)
+        if(this._tipo_ == child)
         {
-            this._parEsq_ = null;
+            this._tipo_ = null;
+            return;
+        }
+
+        if(this._colEsq_ == child)
+        {
+            this._colEsq_ = null;
             return;
         }
 
@@ -145,9 +182,9 @@ public final class AParPrio7 extends PPrio7
             return;
         }
 
-        if(this._parDir_ == child)
+        if(this._colDir_ == child)
         {
-            this._parDir_ = null;
+            this._colDir_ = null;
             return;
         }
 
@@ -158,9 +195,15 @@ public final class AParPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._parEsq_ == oldChild)
+        if(this._tipo_ == oldChild)
         {
-            setParEsq((TParEsq) newChild);
+            setTipo((PTipo) newChild);
+            return;
+        }
+
+        if(this._colEsq_ == oldChild)
+        {
+            setColEsq((TColEsq) newChild);
             return;
         }
 
@@ -170,9 +213,9 @@ public final class AParPrio7 extends PPrio7
             return;
         }
 
-        if(this._parDir_ == oldChild)
+        if(this._colDir_ == oldChild)
         {
-            setParDir((TParDir) newChild);
+            setColDir((TColDir) newChild);
             return;
         }
 

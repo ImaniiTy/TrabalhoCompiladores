@@ -5,44 +5,49 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
+public final class AValorArrayValor extends PValor
 {
     private PValor _valor_;
-    private TAtribuicao _atribuicao_;
+    private TColEsq _colEsq_;
     private PExp _exp_;
+    private TColDir _colDir_;
 
-    public AIdAtribuicaoIdAtribuicao()
+    public AValorArrayValor()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoIdAtribuicao(
+    public AValorArrayValor(
         @SuppressWarnings("hiding") PValor _valor_,
-        @SuppressWarnings("hiding") TAtribuicao _atribuicao_,
-        @SuppressWarnings("hiding") PExp _exp_)
+        @SuppressWarnings("hiding") TColEsq _colEsq_,
+        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") TColDir _colDir_)
     {
         // Constructor
         setValor(_valor_);
 
-        setAtribuicao(_atribuicao_);
+        setColEsq(_colEsq_);
 
         setExp(_exp_);
+
+        setColDir(_colDir_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoIdAtribuicao(
+        return new AValorArrayValor(
             cloneNode(this._valor_),
-            cloneNode(this._atribuicao_),
-            cloneNode(this._exp_));
+            cloneNode(this._colEsq_),
+            cloneNode(this._exp_),
+            cloneNode(this._colDir_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoIdAtribuicao(this);
+        ((Analysis) sw).caseAValorArrayValor(this);
     }
 
     public PValor getValor()
@@ -70,16 +75,16 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
         this._valor_ = node;
     }
 
-    public TAtribuicao getAtribuicao()
+    public TColEsq getColEsq()
     {
-        return this._atribuicao_;
+        return this._colEsq_;
     }
 
-    public void setAtribuicao(TAtribuicao node)
+    public void setColEsq(TColEsq node)
     {
-        if(this._atribuicao_ != null)
+        if(this._colEsq_ != null)
         {
-            this._atribuicao_.parent(null);
+            this._colEsq_.parent(null);
         }
 
         if(node != null)
@@ -92,7 +97,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             node.parent(this);
         }
 
-        this._atribuicao_ = node;
+        this._colEsq_ = node;
     }
 
     public PExp getExp()
@@ -120,13 +125,39 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
         this._exp_ = node;
     }
 
+    public TColDir getColDir()
+    {
+        return this._colDir_;
+    }
+
+    public void setColDir(TColDir node)
+    {
+        if(this._colDir_ != null)
+        {
+            this._colDir_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._colDir_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
             + toString(this._valor_)
-            + toString(this._atribuicao_)
-            + toString(this._exp_);
+            + toString(this._colEsq_)
+            + toString(this._exp_)
+            + toString(this._colDir_);
     }
 
     @Override
@@ -139,15 +170,21 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             return;
         }
 
-        if(this._atribuicao_ == child)
+        if(this._colEsq_ == child)
         {
-            this._atribuicao_ = null;
+            this._colEsq_ = null;
             return;
         }
 
         if(this._exp_ == child)
         {
             this._exp_ = null;
+            return;
+        }
+
+        if(this._colDir_ == child)
+        {
+            this._colDir_ = null;
             return;
         }
 
@@ -164,15 +201,21 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             return;
         }
 
-        if(this._atribuicao_ == oldChild)
+        if(this._colEsq_ == oldChild)
         {
-            setAtribuicao((TAtribuicao) newChild);
+            setColEsq((TColEsq) newChild);
             return;
         }
 
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
+            return;
+        }
+
+        if(this._colDir_ == oldChild)
+        {
+            setColDir((TColDir) newChild);
             return;
         }
 

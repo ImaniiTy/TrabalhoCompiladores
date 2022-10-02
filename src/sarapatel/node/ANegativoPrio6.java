@@ -5,22 +5,22 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANegacaoPrio6 extends PPrio6
+public final class ANegativoPrio6 extends PPrio6
 {
-    private TNegacao _negacao_;
+    private TMenos _menos_;
     private PPrio7 _prio7_;
 
-    public ANegacaoPrio6()
+    public ANegativoPrio6()
     {
         // Constructor
     }
 
-    public ANegacaoPrio6(
-        @SuppressWarnings("hiding") TNegacao _negacao_,
+    public ANegativoPrio6(
+        @SuppressWarnings("hiding") TMenos _menos_,
         @SuppressWarnings("hiding") PPrio7 _prio7_)
     {
         // Constructor
-        setNegacao(_negacao_);
+        setMenos(_menos_);
 
         setPrio7(_prio7_);
 
@@ -29,27 +29,27 @@ public final class ANegacaoPrio6 extends PPrio6
     @Override
     public Object clone()
     {
-        return new ANegacaoPrio6(
-            cloneNode(this._negacao_),
+        return new ANegativoPrio6(
+            cloneNode(this._menos_),
             cloneNode(this._prio7_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANegacaoPrio6(this);
+        ((Analysis) sw).caseANegativoPrio6(this);
     }
 
-    public TNegacao getNegacao()
+    public TMenos getMenos()
     {
-        return this._negacao_;
+        return this._menos_;
     }
 
-    public void setNegacao(TNegacao node)
+    public void setMenos(TMenos node)
     {
-        if(this._negacao_ != null)
+        if(this._menos_ != null)
         {
-            this._negacao_.parent(null);
+            this._menos_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class ANegacaoPrio6 extends PPrio6
             node.parent(this);
         }
 
-        this._negacao_ = node;
+        this._menos_ = node;
     }
 
     public PPrio7 getPrio7()
@@ -94,7 +94,7 @@ public final class ANegacaoPrio6 extends PPrio6
     public String toString()
     {
         return ""
-            + toString(this._negacao_)
+            + toString(this._menos_)
             + toString(this._prio7_);
     }
 
@@ -102,9 +102,9 @@ public final class ANegacaoPrio6 extends PPrio6
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._negacao_ == child)
+        if(this._menos_ == child)
         {
-            this._negacao_ = null;
+            this._menos_ = null;
             return;
         }
 
@@ -121,9 +121,9 @@ public final class ANegacaoPrio6 extends PPrio6
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._negacao_ == oldChild)
+        if(this._menos_ == oldChild)
         {
-            setNegacao((TNegacao) newChild);
+            setMenos((TMenos) newChild);
             return;
         }
 

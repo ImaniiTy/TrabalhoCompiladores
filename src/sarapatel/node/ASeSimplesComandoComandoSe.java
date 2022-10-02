@@ -5,44 +5,79 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParPrio7 extends PPrio7
+public final class ASeSimplesComandoComandoSe extends PComandoSe
 {
+    private TCmdSe _cmdSe_;
     private TParEsq _parEsq_;
     private PExp _exp_;
     private TParDir _parDir_;
+    private PComando _comando_;
 
-    public AParPrio7()
+    public ASeSimplesComandoComandoSe()
     {
         // Constructor
     }
 
-    public AParPrio7(
+    public ASeSimplesComandoComandoSe(
+        @SuppressWarnings("hiding") TCmdSe _cmdSe_,
         @SuppressWarnings("hiding") TParEsq _parEsq_,
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParDir _parDir_)
+        @SuppressWarnings("hiding") TParDir _parDir_,
+        @SuppressWarnings("hiding") PComando _comando_)
     {
         // Constructor
+        setCmdSe(_cmdSe_);
+
         setParEsq(_parEsq_);
 
         setExp(_exp_);
 
         setParDir(_parDir_);
 
+        setComando(_comando_);
+
     }
 
     @Override
     public Object clone()
     {
-        return new AParPrio7(
+        return new ASeSimplesComandoComandoSe(
+            cloneNode(this._cmdSe_),
             cloneNode(this._parEsq_),
             cloneNode(this._exp_),
-            cloneNode(this._parDir_));
+            cloneNode(this._parDir_),
+            cloneNode(this._comando_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParPrio7(this);
+        ((Analysis) sw).caseASeSimplesComandoComandoSe(this);
+    }
+
+    public TCmdSe getCmdSe()
+    {
+        return this._cmdSe_;
+    }
+
+    public void setCmdSe(TCmdSe node)
+    {
+        if(this._cmdSe_ != null)
+        {
+            this._cmdSe_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._cmdSe_ = node;
     }
 
     public TParEsq getParEsq()
@@ -120,19 +155,52 @@ public final class AParPrio7 extends PPrio7
         this._parDir_ = node;
     }
 
+    public PComando getComando()
+    {
+        return this._comando_;
+    }
+
+    public void setComando(PComando node)
+    {
+        if(this._comando_ != null)
+        {
+            this._comando_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._comando_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
+            + toString(this._cmdSe_)
             + toString(this._parEsq_)
             + toString(this._exp_)
-            + toString(this._parDir_);
+            + toString(this._parDir_)
+            + toString(this._comando_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._cmdSe_ == child)
+        {
+            this._cmdSe_ = null;
+            return;
+        }
+
         if(this._parEsq_ == child)
         {
             this._parEsq_ = null;
@@ -151,6 +219,12 @@ public final class AParPrio7 extends PPrio7
             return;
         }
 
+        if(this._comando_ == child)
+        {
+            this._comando_ = null;
+            return;
+        }
+
         throw new RuntimeException("Not a child.");
     }
 
@@ -158,6 +232,12 @@ public final class AParPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._cmdSe_ == oldChild)
+        {
+            setCmdSe((TCmdSe) newChild);
+            return;
+        }
+
         if(this._parEsq_ == oldChild)
         {
             setParEsq((TParEsq) newChild);
@@ -173,6 +253,12 @@ public final class AParPrio7 extends PPrio7
         if(this._parDir_ == oldChild)
         {
             setParDir((TParDir) newChild);
+            return;
+        }
+
+        if(this._comando_ == oldChild)
+        {
+            setComando((PComando) newChild);
             return;
         }
 

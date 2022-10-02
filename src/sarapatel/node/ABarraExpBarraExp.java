@@ -5,26 +5,22 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
+public final class ABarraExpBarraExp extends PBarraExp
 {
-    private PValor _valor_;
-    private TAtribuicao _atribuicao_;
+    private TBarra _barra_;
     private PExp _exp_;
 
-    public AIdAtribuicaoIdAtribuicao()
+    public ABarraExpBarraExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoIdAtribuicao(
-        @SuppressWarnings("hiding") PValor _valor_,
-        @SuppressWarnings("hiding") TAtribuicao _atribuicao_,
+    public ABarraExpBarraExp(
+        @SuppressWarnings("hiding") TBarra _barra_,
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setValor(_valor_);
-
-        setAtribuicao(_atribuicao_);
+        setBarra(_barra_);
 
         setExp(_exp_);
 
@@ -33,28 +29,27 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoIdAtribuicao(
-            cloneNode(this._valor_),
-            cloneNode(this._atribuicao_),
+        return new ABarraExpBarraExp(
+            cloneNode(this._barra_),
             cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoIdAtribuicao(this);
+        ((Analysis) sw).caseABarraExpBarraExp(this);
     }
 
-    public PValor getValor()
+    public TBarra getBarra()
     {
-        return this._valor_;
+        return this._barra_;
     }
 
-    public void setValor(PValor node)
+    public void setBarra(TBarra node)
     {
-        if(this._valor_ != null)
+        if(this._barra_ != null)
         {
-            this._valor_.parent(null);
+            this._barra_.parent(null);
         }
 
         if(node != null)
@@ -67,32 +62,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             node.parent(this);
         }
 
-        this._valor_ = node;
-    }
-
-    public TAtribuicao getAtribuicao()
-    {
-        return this._atribuicao_;
-    }
-
-    public void setAtribuicao(TAtribuicao node)
-    {
-        if(this._atribuicao_ != null)
-        {
-            this._atribuicao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._atribuicao_ = node;
+        this._barra_ = node;
     }
 
     public PExp getExp()
@@ -124,8 +94,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     public String toString()
     {
         return ""
-            + toString(this._valor_)
-            + toString(this._atribuicao_)
+            + toString(this._barra_)
             + toString(this._exp_);
     }
 
@@ -133,15 +102,9 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._valor_ == child)
+        if(this._barra_ == child)
         {
-            this._valor_ = null;
-            return;
-        }
-
-        if(this._atribuicao_ == child)
-        {
-            this._atribuicao_ = null;
+            this._barra_ = null;
             return;
         }
 
@@ -158,15 +121,9 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._valor_ == oldChild)
+        if(this._barra_ == oldChild)
         {
-            setValor((PValor) newChild);
-            return;
-        }
-
-        if(this._atribuicao_ == oldChild)
-        {
-            setAtribuicao((TAtribuicao) newChild);
+            setBarra((TBarra) newChild);
             return;
         }
 

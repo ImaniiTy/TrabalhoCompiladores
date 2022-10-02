@@ -67,31 +67,97 @@ Ignored Tokens
 
 Productions
     entrada = 
-        {programa} programa*;
+        {programa} programa_esq* programa_dir+;
+    
+    programa_esq = 
+        {prod_decl_var} prod_decl_var
+        |{prod_decl_const} prod_decl_const;
 
-    programa =
-        {prod_dec_var} prod_dec_var
-        |{prod_dec_const} prod_dec_const;
+    programa_dir = 
+        {prod_decl_procedimento} prod_decl_procedimento
+        |{prod_decl_funcao} prod_decl_funcao;
 
-    prod_dec_var =
+    prod_decl_var =
         {var_id} decl_var dois_pontos tipo id ponto_virgula
         |{var_id_atribuicao} decl_var dois_pontos tipo id_atribuicao ponto_virgula;
 
-    prod_dec_const =
+    prod_decl_const =
         {constante} decl_const dois_pontos tipo id_atribuicao ponto_virgula;
 
     id_atribuicao =
-        {id_atribuicao} id atribuicao prio0;
+        {id_atribuicao} valor atribuicao exp;
 
-    tipo =
+    array_comp =
+        {array_comp} col_esq id barra exp col_dir;
+
+    tipo = 
+        {tipo_base} tipo_base
+        | {tipo_exp} tipo col_esq exp col_dir;
+
+    tipo_base =
         {tipo_inteiro} tipo_inteiro
         |{tipo_booleano} tipo_booleano
         |{tipo_real} tipo_real
-        |{tipo_cadeia} tipo_cadeia; 
+        |{tipo_cadeia} tipo_cadeia;
+
+    prod_decl_procedimento = 
+        {prod_decl_procedimento} partida? decl_procedimento dois_pontos id par_esq parametros? par_dir comando_se;
+
+    prod_decl_funcao = 
+        {prod_decl_funcao} decl_funcao dois_pontos tipo id par_esq parametros? par_dir exp;
+
+    parametros = 
+        {parametro} parametro barra_parametro*;
+
+    barra_parametro = 
+        {barra_parametro} barra parametro;
     
-    prio0 =
+    parametro = 
+        {tipo_parametro} tipo_parametro id;
+
+    tipo_parametro = 
+        {tipo_base} tipo_base 
+        | {tipo_parametro} tipo_parametro col_esq col_dir;
+
+    comando_se = 
+        {se_simples_comando} cmd_se par_esq exp par_dir comando
+        | {se_ternario_comando} cmd_se par_esq exp par_dir [comando_se]:comando cmd_senao [comando_senao]:comando
+        | comando;
+
+    comando = 
+        {enquanto_comando} cmd_enquanto par_esq exp par_dir comando
+        | {id_atribuicao_comando} id_atribuicao ponto_virgula
+        | {chamada_procedimento_comando} chamada_procedimento ponto_virgula
+        | {bloco_comandos} bloco_comandos;
+
+    bloco_comandos = 
+        {bloco_comandos} inicio_bloco programa_esq* comando_se* fim_bloco;
+    
+    valor = 
+        {valor} id
+        | {valor_array} valor col_esq exp col_dir;
+
+    bloco_expressoes = 
+        {bloco_expressoes} inicio_bloco prod_decl_const* exp fim_bloco;
+
+    chamada_funcao = 
+        {chamada_funcao} id par_esq lista_exp? par_dir;
+
+    chamada_procedimento = 
+        {chamada_procedimento} id par_esq lista_exp? par_dir;
+
+    lista_exp = 
+        {lista_exp} exp barra_exp*;
+
+    ternario = 
+        {ternario} cmd_se par_esq [exp_cond]:exp par_dir;
+
+    barra_exp = 
+        {barra_exp} barra exp;
+    
+    exp =
         {prio1} prio1 
-        |{comp_ou} prio0 comp_ou prio1;
+        |{comp_ou} exp comp_ou prio1;
 
     prio1 =
         {prio2} prio2
@@ -119,10 +185,16 @@ Productions
         
     prio6 =
         {prio7} prio7
-        |{negacao} prio6 negacao prio7;
+        |{negacao} negacao prio7
+        |{negativo} menos prio7;
 
     prio7 =
         {numero_int} numero_int
         |{numero_real} numero_real
         |{booleano} verdade | falso
-        |{par} par_esq prio0 par_dir;
+        |{valor} valor
+        |{chamada_funcao} chamada_funcao
+        |{array_comp} array_comp
+        |{ternario} ternario
+        |{bloco_expressoes} bloco_expressoes
+        |{par} par_esq exp par_dir;

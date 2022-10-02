@@ -2,72 +2,43 @@
 
 package sarapatel.node;
 
+import java.util.*;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParPrio7 extends PPrio7
+public final class AListaExpListaExp extends PListaExp
 {
-    private TParEsq _parEsq_;
     private PExp _exp_;
-    private TParDir _parDir_;
+    private final LinkedList<PBarraExp> _barraExp_ = new LinkedList<PBarraExp>();
 
-    public AParPrio7()
+    public AListaExpListaExp()
     {
         // Constructor
     }
 
-    public AParPrio7(
-        @SuppressWarnings("hiding") TParEsq _parEsq_,
+    public AListaExpListaExp(
         @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TParDir _parDir_)
+        @SuppressWarnings("hiding") List<?> _barraExp_)
     {
         // Constructor
-        setParEsq(_parEsq_);
-
         setExp(_exp_);
 
-        setParDir(_parDir_);
+        setBarraExp(_barraExp_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AParPrio7(
-            cloneNode(this._parEsq_),
+        return new AListaExpListaExp(
             cloneNode(this._exp_),
-            cloneNode(this._parDir_));
+            cloneList(this._barraExp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParPrio7(this);
-    }
-
-    public TParEsq getParEsq()
-    {
-        return this._parEsq_;
-    }
-
-    public void setParEsq(TParEsq node)
-    {
-        if(this._parEsq_ != null)
-        {
-            this._parEsq_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parEsq_ = node;
+        ((Analysis) sw).caseAListaExpListaExp(this);
     }
 
     public PExp getExp()
@@ -95,59 +66,52 @@ public final class AParPrio7 extends PPrio7
         this._exp_ = node;
     }
 
-    public TParDir getParDir()
+    public LinkedList<PBarraExp> getBarraExp()
     {
-        return this._parDir_;
+        return this._barraExp_;
     }
 
-    public void setParDir(TParDir node)
+    public void setBarraExp(List<?> list)
     {
-        if(this._parDir_ != null)
+        for(PBarraExp e : this._barraExp_)
         {
-            this._parDir_.parent(null);
+            e.parent(null);
         }
+        this._barraExp_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PBarraExp e = (PBarraExp) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._barraExp_.add(e);
         }
-
-        this._parDir_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._parEsq_)
             + toString(this._exp_)
-            + toString(this._parDir_);
+            + toString(this._barraExp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._parEsq_ == child)
-        {
-            this._parEsq_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
             return;
         }
 
-        if(this._parDir_ == child)
+        if(this._barraExp_.remove(child))
         {
-            this._parDir_ = null;
             return;
         }
 
@@ -158,22 +122,28 @@ public final class AParPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._parEsq_ == oldChild)
-        {
-            setParEsq((TParEsq) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
             return;
         }
 
-        if(this._parDir_ == oldChild)
+        for(ListIterator<PBarraExp> i = this._barraExp_.listIterator(); i.hasNext();)
         {
-            setParDir((TParDir) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PBarraExp) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

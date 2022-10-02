@@ -5,51 +5,51 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANegacaoPrio6 extends PPrio6
+public final class ATipoParametroParametro extends PParametro
 {
-    private TNegacao _negacao_;
-    private PPrio7 _prio7_;
+    private PTipoParametro _tipoParametro_;
+    private TId _id_;
 
-    public ANegacaoPrio6()
+    public ATipoParametroParametro()
     {
         // Constructor
     }
 
-    public ANegacaoPrio6(
-        @SuppressWarnings("hiding") TNegacao _negacao_,
-        @SuppressWarnings("hiding") PPrio7 _prio7_)
+    public ATipoParametroParametro(
+        @SuppressWarnings("hiding") PTipoParametro _tipoParametro_,
+        @SuppressWarnings("hiding") TId _id_)
     {
         // Constructor
-        setNegacao(_negacao_);
+        setTipoParametro(_tipoParametro_);
 
-        setPrio7(_prio7_);
+        setId(_id_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANegacaoPrio6(
-            cloneNode(this._negacao_),
-            cloneNode(this._prio7_));
+        return new ATipoParametroParametro(
+            cloneNode(this._tipoParametro_),
+            cloneNode(this._id_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANegacaoPrio6(this);
+        ((Analysis) sw).caseATipoParametroParametro(this);
     }
 
-    public TNegacao getNegacao()
+    public PTipoParametro getTipoParametro()
     {
-        return this._negacao_;
+        return this._tipoParametro_;
     }
 
-    public void setNegacao(TNegacao node)
+    public void setTipoParametro(PTipoParametro node)
     {
-        if(this._negacao_ != null)
+        if(this._tipoParametro_ != null)
         {
-            this._negacao_.parent(null);
+            this._tipoParametro_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class ANegacaoPrio6 extends PPrio6
             node.parent(this);
         }
 
-        this._negacao_ = node;
+        this._tipoParametro_ = node;
     }
 
-    public PPrio7 getPrio7()
+    public TId getId()
     {
-        return this._prio7_;
+        return this._id_;
     }
 
-    public void setPrio7(PPrio7 node)
+    public void setId(TId node)
     {
-        if(this._prio7_ != null)
+        if(this._id_ != null)
         {
-            this._prio7_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class ANegacaoPrio6 extends PPrio6
             node.parent(this);
         }
 
-        this._prio7_ = node;
+        this._id_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._negacao_)
-            + toString(this._prio7_);
+            + toString(this._tipoParametro_)
+            + toString(this._id_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._negacao_ == child)
+        if(this._tipoParametro_ == child)
         {
-            this._negacao_ = null;
+            this._tipoParametro_ = null;
             return;
         }
 
-        if(this._prio7_ == child)
+        if(this._id_ == child)
         {
-            this._prio7_ = null;
+            this._id_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class ANegacaoPrio6 extends PPrio6
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._negacao_ == oldChild)
+        if(this._tipoParametro_ == oldChild)
         {
-            setNegacao((TNegacao) newChild);
+            setTipoParametro((PTipoParametro) newChild);
             return;
         }
 
-        if(this._prio7_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setPrio7((PPrio7) newChild);
+            setId((TId) newChild);
             return;
         }
 

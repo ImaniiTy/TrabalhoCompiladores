@@ -5,7 +5,7 @@ comece
     arr[b] << temp;
 termine
 
-procedimento: main()
+>> procedimento: main()
 comece
 	var: inteiro arr[5] << [ i | leia() ];
 	
@@ -13,9 +13,9 @@ comece
 	
 	enquanto (trocou)
 	comece
-		trocou << falso;
 		var: inteiro i << 1;
-
+		trocou << falso;
+		
 		enquanto (5 > i)
 		comece
 			se (arr[i-1] > arr[i])

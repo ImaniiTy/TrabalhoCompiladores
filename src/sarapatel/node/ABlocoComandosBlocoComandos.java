@@ -6,39 +6,74 @@ import java.util.*;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AProgramaEntrada extends PEntrada
+public final class ABlocoComandosBlocoComandos extends PBlocoComandos
 {
+    private TInicioBloco _inicioBloco_;
     private final LinkedList<PProgramaEsq> _programaEsq_ = new LinkedList<PProgramaEsq>();
-    private final LinkedList<PProgramaDir> _programaDir_ = new LinkedList<PProgramaDir>();
+    private final LinkedList<PComandoSe> _comandoSe_ = new LinkedList<PComandoSe>();
+    private TFimBloco _fimBloco_;
 
-    public AProgramaEntrada()
+    public ABlocoComandosBlocoComandos()
     {
         // Constructor
     }
 
-    public AProgramaEntrada(
+    public ABlocoComandosBlocoComandos(
+        @SuppressWarnings("hiding") TInicioBloco _inicioBloco_,
         @SuppressWarnings("hiding") List<?> _programaEsq_,
-        @SuppressWarnings("hiding") List<?> _programaDir_)
+        @SuppressWarnings("hiding") List<?> _comandoSe_,
+        @SuppressWarnings("hiding") TFimBloco _fimBloco_)
     {
         // Constructor
+        setInicioBloco(_inicioBloco_);
+
         setProgramaEsq(_programaEsq_);
 
-        setProgramaDir(_programaDir_);
+        setComandoSe(_comandoSe_);
+
+        setFimBloco(_fimBloco_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AProgramaEntrada(
+        return new ABlocoComandosBlocoComandos(
+            cloneNode(this._inicioBloco_),
             cloneList(this._programaEsq_),
-            cloneList(this._programaDir_));
+            cloneList(this._comandoSe_),
+            cloneNode(this._fimBloco_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAProgramaEntrada(this);
+        ((Analysis) sw).caseABlocoComandosBlocoComandos(this);
+    }
+
+    public TInicioBloco getInicioBloco()
+    {
+        return this._inicioBloco_;
+    }
+
+    public void setInicioBloco(TInicioBloco node)
+    {
+        if(this._inicioBloco_ != null)
+        {
+            this._inicioBloco_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._inicioBloco_ = node;
     }
 
     public LinkedList<PProgramaEsq> getProgramaEsq()
@@ -67,51 +102,90 @@ public final class AProgramaEntrada extends PEntrada
         }
     }
 
-    public LinkedList<PProgramaDir> getProgramaDir()
+    public LinkedList<PComandoSe> getComandoSe()
     {
-        return this._programaDir_;
+        return this._comandoSe_;
     }
 
-    public void setProgramaDir(List<?> list)
+    public void setComandoSe(List<?> list)
     {
-        for(PProgramaDir e : this._programaDir_)
+        for(PComandoSe e : this._comandoSe_)
         {
             e.parent(null);
         }
-        this._programaDir_.clear();
+        this._comandoSe_.clear();
 
         for(Object obj_e : list)
         {
-            PProgramaDir e = (PProgramaDir) obj_e;
+            PComandoSe e = (PComandoSe) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._programaDir_.add(e);
+            this._comandoSe_.add(e);
         }
+    }
+
+    public TFimBloco getFimBloco()
+    {
+        return this._fimBloco_;
+    }
+
+    public void setFimBloco(TFimBloco node)
+    {
+        if(this._fimBloco_ != null)
+        {
+            this._fimBloco_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._fimBloco_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
+            + toString(this._inicioBloco_)
             + toString(this._programaEsq_)
-            + toString(this._programaDir_);
+            + toString(this._comandoSe_)
+            + toString(this._fimBloco_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._inicioBloco_ == child)
+        {
+            this._inicioBloco_ = null;
+            return;
+        }
+
         if(this._programaEsq_.remove(child))
         {
             return;
         }
 
-        if(this._programaDir_.remove(child))
+        if(this._comandoSe_.remove(child))
         {
+            return;
+        }
+
+        if(this._fimBloco_ == child)
+        {
+            this._fimBloco_ = null;
             return;
         }
 
@@ -122,6 +196,12 @@ public final class AProgramaEntrada extends PEntrada
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._inicioBloco_ == oldChild)
+        {
+            setInicioBloco((TInicioBloco) newChild);
+            return;
+        }
+
         for(ListIterator<PProgramaEsq> i = this._programaEsq_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
@@ -140,13 +220,13 @@ public final class AProgramaEntrada extends PEntrada
             }
         }
 
-        for(ListIterator<PProgramaDir> i = this._programaDir_.listIterator(); i.hasNext();)
+        for(ListIterator<PComandoSe> i = this._comandoSe_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PProgramaDir) newChild);
+                    i.set((PComandoSe) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;
@@ -156,6 +236,12 @@ public final class AProgramaEntrada extends PEntrada
                 oldChild.parent(null);
                 return;
             }
+        }
+
+        if(this._fimBloco_ == oldChild)
+        {
+            setFimBloco((TFimBloco) newChild);
+            return;
         }
 
         throw new RuntimeException("Not a child.");
