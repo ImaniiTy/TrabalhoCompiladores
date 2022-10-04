@@ -26,6 +26,9 @@ comece
 
 	var: real media << calcularMedia(a | b);
 
-	se (media >= 5) imprima('Aprovado!') senao imprima('Repovado!');
+	se (media >= 5) 
+		imprima('Aprovado!'); 
+	senao 
+		imprima('Repovado!');
 	
 termine

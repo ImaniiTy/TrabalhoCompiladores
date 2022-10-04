@@ -14,7 +14,7 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
     private TParEsq _parEsq_;
     private PParametros _parametros_;
     private TParDir _parDir_;
-    private PComandoSe _comandoSe_;
+    private PComando _comando_;
 
     public AProdDeclProcedimentoProdDeclProcedimento()
     {
@@ -29,7 +29,7 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
         @SuppressWarnings("hiding") TParEsq _parEsq_,
         @SuppressWarnings("hiding") PParametros _parametros_,
         @SuppressWarnings("hiding") TParDir _parDir_,
-        @SuppressWarnings("hiding") PComandoSe _comandoSe_)
+        @SuppressWarnings("hiding") PComando _comando_)
     {
         // Constructor
         setPartida(_partida_);
@@ -46,7 +46,7 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
 
         setParDir(_parDir_);
 
-        setComandoSe(_comandoSe_);
+        setComando(_comando_);
 
     }
 
@@ -61,7 +61,7 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
             cloneNode(this._parEsq_),
             cloneNode(this._parametros_),
             cloneNode(this._parDir_),
-            cloneNode(this._comandoSe_));
+            cloneNode(this._comando_));
     }
 
     @Override
@@ -245,16 +245,16 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
         this._parDir_ = node;
     }
 
-    public PComandoSe getComandoSe()
+    public PComando getComando()
     {
-        return this._comandoSe_;
+        return this._comando_;
     }
 
-    public void setComandoSe(PComandoSe node)
+    public void setComando(PComando node)
     {
-        if(this._comandoSe_ != null)
+        if(this._comando_ != null)
         {
-            this._comandoSe_.parent(null);
+            this._comando_.parent(null);
         }
 
         if(node != null)
@@ -267,7 +267,7 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
             node.parent(this);
         }
 
-        this._comandoSe_ = node;
+        this._comando_ = node;
     }
 
     @Override
@@ -281,7 +281,7 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
             + toString(this._parEsq_)
             + toString(this._parametros_)
             + toString(this._parDir_)
-            + toString(this._comandoSe_);
+            + toString(this._comando_);
     }
 
     @Override
@@ -330,9 +330,9 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
             return;
         }
 
-        if(this._comandoSe_ == child)
+        if(this._comando_ == child)
         {
-            this._comandoSe_ = null;
+            this._comando_ = null;
             return;
         }
 
@@ -385,9 +385,9 @@ public final class AProdDeclProcedimentoProdDeclProcedimento extends PProdDeclPr
             return;
         }
 
-        if(this._comandoSe_ == oldChild)
+        if(this._comando_ == oldChild)
         {
-            setComandoSe((PComandoSe) newChild);
+            setComando((PComando) newChild);
             return;
         }
 

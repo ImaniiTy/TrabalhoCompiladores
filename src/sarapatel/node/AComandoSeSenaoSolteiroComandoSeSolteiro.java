@@ -5,36 +5,36 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASeTernarioComandoComandoSe extends PComandoSe
+public final class AComandoSeSenaoSolteiroComandoSeSolteiro extends PComandoSeSolteiro
 {
     private TCmdSe _cmdSe_;
     private TParEsq _parEsq_;
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
     private TParDir _parDir_;
-    private PComando _comandoSe_;
+    private PComandoSeCasado _comandoSe_;
     private TCmdSenao _cmdSenao_;
-    private PComando _comandoSenao_;
+    private PComandoSeSolteiro _comandoSenao_;
 
-    public ASeTernarioComandoComandoSe()
+    public AComandoSeSenaoSolteiroComandoSeSolteiro()
     {
         // Constructor
     }
 
-    public ASeTernarioComandoComandoSe(
+    public AComandoSeSenaoSolteiroComandoSeSolteiro(
         @SuppressWarnings("hiding") TCmdSe _cmdSe_,
         @SuppressWarnings("hiding") TParEsq _parEsq_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
         @SuppressWarnings("hiding") TParDir _parDir_,
-        @SuppressWarnings("hiding") PComando _comandoSe_,
+        @SuppressWarnings("hiding") PComandoSeCasado _comandoSe_,
         @SuppressWarnings("hiding") TCmdSenao _cmdSenao_,
-        @SuppressWarnings("hiding") PComando _comandoSenao_)
+        @SuppressWarnings("hiding") PComandoSeSolteiro _comandoSenao_)
     {
         // Constructor
         setCmdSe(_cmdSe_);
 
         setParEsq(_parEsq_);
 
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
         setParDir(_parDir_);
 
@@ -49,10 +49,10 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
     @Override
     public Object clone()
     {
-        return new ASeTernarioComandoComandoSe(
+        return new AComandoSeSenaoSolteiroComandoSeSolteiro(
             cloneNode(this._cmdSe_),
             cloneNode(this._parEsq_),
-            cloneNode(this._exp_),
+            cloneNode(this._ternarioExp_),
             cloneNode(this._parDir_),
             cloneNode(this._comandoSe_),
             cloneNode(this._cmdSenao_),
@@ -62,7 +62,7 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASeTernarioComandoComandoSe(this);
+        ((Analysis) sw).caseAComandoSeSenaoSolteiroComandoSeSolteiro(this);
     }
 
     public TCmdSe getCmdSe()
@@ -115,16 +115,16 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
         this._parEsq_ = node;
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -137,7 +137,7 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     public TParDir getParDir()
@@ -165,12 +165,12 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
         this._parDir_ = node;
     }
 
-    public PComando getComandoSe()
+    public PComandoSeCasado getComandoSe()
     {
         return this._comandoSe_;
     }
 
-    public void setComandoSe(PComando node)
+    public void setComandoSe(PComandoSeCasado node)
     {
         if(this._comandoSe_ != null)
         {
@@ -215,12 +215,12 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
         this._cmdSenao_ = node;
     }
 
-    public PComando getComandoSenao()
+    public PComandoSeSolteiro getComandoSenao()
     {
         return this._comandoSenao_;
     }
 
-    public void setComandoSenao(PComando node)
+    public void setComandoSenao(PComandoSeSolteiro node)
     {
         if(this._comandoSenao_ != null)
         {
@@ -246,7 +246,7 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
         return ""
             + toString(this._cmdSe_)
             + toString(this._parEsq_)
-            + toString(this._exp_)
+            + toString(this._ternarioExp_)
             + toString(this._parDir_)
             + toString(this._comandoSe_)
             + toString(this._cmdSenao_)
@@ -269,9 +269,9 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -318,9 +318,9 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 
@@ -332,7 +332,7 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
 
         if(this._comandoSe_ == oldChild)
         {
-            setComandoSe((PComando) newChild);
+            setComandoSe((PComandoSeCasado) newChild);
             return;
         }
 
@@ -344,7 +344,7 @@ public final class ASeTernarioComandoComandoSe extends PComandoSe
 
         if(this._comandoSenao_ == oldChild)
         {
-            setComandoSenao((PComando) newChild);
+            setComandoSenao((PComandoSeSolteiro) newChild);
             return;
         }
 

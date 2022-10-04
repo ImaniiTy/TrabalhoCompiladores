@@ -2,7 +2,7 @@
 
 package sarapatel.node;
 
-public abstract class PComandoSe extends Node
+public abstract class PTernarioExp extends Node
 {
     // Empty body
 }

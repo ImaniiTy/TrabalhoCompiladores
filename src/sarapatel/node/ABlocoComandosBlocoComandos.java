@@ -10,7 +10,7 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
 {
     private TInicioBloco _inicioBloco_;
     private final LinkedList<PProgramaEsq> _programaEsq_ = new LinkedList<PProgramaEsq>();
-    private final LinkedList<PComandoSe> _comandoSe_ = new LinkedList<PComandoSe>();
+    private final LinkedList<PComando> _comando_ = new LinkedList<PComando>();
     private TFimBloco _fimBloco_;
 
     public ABlocoComandosBlocoComandos()
@@ -21,7 +21,7 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
     public ABlocoComandosBlocoComandos(
         @SuppressWarnings("hiding") TInicioBloco _inicioBloco_,
         @SuppressWarnings("hiding") List<?> _programaEsq_,
-        @SuppressWarnings("hiding") List<?> _comandoSe_,
+        @SuppressWarnings("hiding") List<?> _comando_,
         @SuppressWarnings("hiding") TFimBloco _fimBloco_)
     {
         // Constructor
@@ -29,7 +29,7 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
 
         setProgramaEsq(_programaEsq_);
 
-        setComandoSe(_comandoSe_);
+        setComando(_comando_);
 
         setFimBloco(_fimBloco_);
 
@@ -41,7 +41,7 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
         return new ABlocoComandosBlocoComandos(
             cloneNode(this._inicioBloco_),
             cloneList(this._programaEsq_),
-            cloneList(this._comandoSe_),
+            cloneList(this._comando_),
             cloneNode(this._fimBloco_));
     }
 
@@ -102,29 +102,29 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
         }
     }
 
-    public LinkedList<PComandoSe> getComandoSe()
+    public LinkedList<PComando> getComando()
     {
-        return this._comandoSe_;
+        return this._comando_;
     }
 
-    public void setComandoSe(List<?> list)
+    public void setComando(List<?> list)
     {
-        for(PComandoSe e : this._comandoSe_)
+        for(PComando e : this._comando_)
         {
             e.parent(null);
         }
-        this._comandoSe_.clear();
+        this._comando_.clear();
 
         for(Object obj_e : list)
         {
-            PComandoSe e = (PComandoSe) obj_e;
+            PComando e = (PComando) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._comandoSe_.add(e);
+            this._comando_.add(e);
         }
     }
 
@@ -159,7 +159,7 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
         return ""
             + toString(this._inicioBloco_)
             + toString(this._programaEsq_)
-            + toString(this._comandoSe_)
+            + toString(this._comando_)
             + toString(this._fimBloco_);
     }
 
@@ -178,7 +178,7 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
             return;
         }
 
-        if(this._comandoSe_.remove(child))
+        if(this._comando_.remove(child))
         {
             return;
         }
@@ -220,13 +220,13 @@ public final class ABlocoComandosBlocoComandos extends PBlocoComandos
             }
         }
 
-        for(ListIterator<PComandoSe> i = this._comandoSe_.listIterator(); i.hasNext();)
+        for(ListIterator<PComando> i = this._comando_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PComandoSe) newChild);
+                    i.set((PComando) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

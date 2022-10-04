@@ -63,6 +63,8 @@ Tokens
 
 
 Ignored Tokens
+    comentario_linha,
+    comentario_bloco,
     vazio;
 
 Productions
@@ -85,14 +87,14 @@ Productions
         {constante} decl_const dois_pontos tipo id_atribuicao ponto_virgula;
 
     id_atribuicao =
-        {id_atribuicao} valor atribuicao exp;
+        {id_atribuicao} valor atribuicao ternario_exp;
 
     array_comp =
-        {array_comp} col_esq id barra exp col_dir;
+        {array_comp} col_esq id barra ternario_exp col_dir;
 
     tipo = 
         {tipo_base} tipo_base
-        | {tipo_exp} tipo col_esq exp col_dir;
+        | {tipo_exp} tipo col_esq ternario_exp col_dir;
 
     tipo_base =
         {tipo_inteiro} tipo_inteiro
@@ -101,13 +103,14 @@ Productions
         |{tipo_cadeia} tipo_cadeia;
 
     prod_decl_procedimento = 
-        {prod_decl_procedimento} partida? decl_procedimento dois_pontos id par_esq parametros? par_dir comando_se;
+        {prod_decl_procedimento} partida? decl_procedimento dois_pontos id par_esq parametros par_dir comando;
 
     prod_decl_funcao = 
-        {prod_decl_funcao} decl_funcao dois_pontos tipo id par_esq parametros? par_dir exp;
+        {prod_decl_funcao} decl_funcao dois_pontos tipo id par_esq parametros par_dir ternario_exp;
 
     parametros = 
-        {parametro} parametro barra_parametro*;
+        {parametro} parametro barra_parametro*
+        |{vazio};
 
     barra_parametro = 
         {barra_parametro} barra parametro;
@@ -118,42 +121,51 @@ Productions
     tipo_parametro = 
         {tipo_base} tipo_base 
         | {tipo_parametro} tipo_parametro col_esq col_dir;
+    
+    comando_se_solteiro = 
+        {comando_se_solteiro} cmd_se par_esq ternario_exp par_dir comando
+        | {comando_se_senao_solteiro} cmd_se par_esq ternario_exp par_dir [comando_se]:comando_se_casado cmd_senao [comando_senao]:comando_se_solteiro
+        | {enquanto_comando} cmd_enquanto par_esq ternario_exp par_dir comando_se_solteiro;
 
-    comando_se = 
-        {se_simples_comando} cmd_se par_esq exp par_dir comando
-        | {se_ternario_comando} cmd_se par_esq exp par_dir [comando_se]:comando cmd_senao [comando_senao]:comando
-        | comando;
-
-    comando = 
-        {enquanto_comando} cmd_enquanto par_esq exp par_dir comando
+    comando_se_casado = 
+        {comando_se_senao_casado} cmd_se par_esq ternario_exp par_dir [comando_se]:comando_se_casado cmd_senao [comando_senao]:comando_se_casado
+        | {enquanto_comando} cmd_enquanto par_esq ternario_exp par_dir comando_se_casado
         | {id_atribuicao_comando} id_atribuicao ponto_virgula
         | {chamada_procedimento_comando} chamada_procedimento ponto_virgula
         | {bloco_comandos} bloco_comandos;
 
+    comando = 
+        {comando_se_casado} comando_se_casado
+        | {comando_se_solteiro} comando_se_solteiro;
+
     bloco_comandos = 
-        {bloco_comandos} inicio_bloco programa_esq* comando_se* fim_bloco;
+        {bloco_comandos} inicio_bloco programa_esq* comando* fim_bloco;
     
     valor = 
         {valor} id
-        | {valor_array} valor col_esq exp col_dir;
+        | {valor_array} valor col_esq ternario_exp col_dir;
 
     bloco_expressoes = 
-        {bloco_expressoes} inicio_bloco prod_decl_const* exp fim_bloco;
+        {bloco_expressoes} inicio_bloco prod_decl_const* ternario_exp fim_bloco;
 
     chamada_funcao = 
-        {chamada_funcao} id par_esq lista_exp? par_dir;
+        {chamada_funcao} id par_esq lista_exp par_dir;
 
     chamada_procedimento = 
-        {chamada_procedimento} id par_esq lista_exp? par_dir;
+        {chamada_procedimento} id par_esq lista_exp par_dir;
 
     lista_exp = 
-        {lista_exp} exp barra_exp*;
+        {lista_exp} ternario_exp barra_exp*
+        | {vazio};
 
+    ternario_exp = {ternario} ternario;
+    
     ternario = 
-        {ternario} cmd_se par_esq [exp_cond]:exp par_dir;
+        {exp} exp
+        | {ternario} cmd_se par_esq exp par_dir [ternario_verdade]:ternario cmd_senao [ternario_falso]:ternario;
 
     barra_exp = 
-        {barra_exp} barra exp;
+        {barra_exp} barra ternario_exp;
     
     exp =
         {prio1} prio1 
@@ -192,9 +204,9 @@ Productions
         {numero_int} numero_int
         |{numero_real} numero_real
         |{booleano} verdade | falso
+        |{cadeia} cadeia
         |{valor} valor
         |{chamada_funcao} chamada_funcao
         |{array_comp} array_comp
-        |{ternario} ternario
         |{bloco_expressoes} bloco_expressoes
-        |{par} par_esq exp par_dir;
+        |{par} par_esq ternario_exp par_dir;

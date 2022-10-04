@@ -5,44 +5,79 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParPrio7 extends PPrio7
+public final class AEnquantoComandoComandoSeCasado extends PComandoSeCasado
 {
+    private TCmdEnquanto _cmdEnquanto_;
     private TParEsq _parEsq_;
     private PTernarioExp _ternarioExp_;
     private TParDir _parDir_;
+    private PComandoSeCasado _comandoSeCasado_;
 
-    public AParPrio7()
+    public AEnquantoComandoComandoSeCasado()
     {
         // Constructor
     }
 
-    public AParPrio7(
+    public AEnquantoComandoComandoSeCasado(
+        @SuppressWarnings("hiding") TCmdEnquanto _cmdEnquanto_,
         @SuppressWarnings("hiding") TParEsq _parEsq_,
         @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
-        @SuppressWarnings("hiding") TParDir _parDir_)
+        @SuppressWarnings("hiding") TParDir _parDir_,
+        @SuppressWarnings("hiding") PComandoSeCasado _comandoSeCasado_)
     {
         // Constructor
+        setCmdEnquanto(_cmdEnquanto_);
+
         setParEsq(_parEsq_);
 
         setTernarioExp(_ternarioExp_);
 
         setParDir(_parDir_);
 
+        setComandoSeCasado(_comandoSeCasado_);
+
     }
 
     @Override
     public Object clone()
     {
-        return new AParPrio7(
+        return new AEnquantoComandoComandoSeCasado(
+            cloneNode(this._cmdEnquanto_),
             cloneNode(this._parEsq_),
             cloneNode(this._ternarioExp_),
-            cloneNode(this._parDir_));
+            cloneNode(this._parDir_),
+            cloneNode(this._comandoSeCasado_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParPrio7(this);
+        ((Analysis) sw).caseAEnquantoComandoComandoSeCasado(this);
+    }
+
+    public TCmdEnquanto getCmdEnquanto()
+    {
+        return this._cmdEnquanto_;
+    }
+
+    public void setCmdEnquanto(TCmdEnquanto node)
+    {
+        if(this._cmdEnquanto_ != null)
+        {
+            this._cmdEnquanto_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._cmdEnquanto_ = node;
     }
 
     public TParEsq getParEsq()
@@ -120,19 +155,52 @@ public final class AParPrio7 extends PPrio7
         this._parDir_ = node;
     }
 
+    public PComandoSeCasado getComandoSeCasado()
+    {
+        return this._comandoSeCasado_;
+    }
+
+    public void setComandoSeCasado(PComandoSeCasado node)
+    {
+        if(this._comandoSeCasado_ != null)
+        {
+            this._comandoSeCasado_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._comandoSeCasado_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
+            + toString(this._cmdEnquanto_)
             + toString(this._parEsq_)
             + toString(this._ternarioExp_)
-            + toString(this._parDir_);
+            + toString(this._parDir_)
+            + toString(this._comandoSeCasado_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._cmdEnquanto_ == child)
+        {
+            this._cmdEnquanto_ = null;
+            return;
+        }
+
         if(this._parEsq_ == child)
         {
             this._parEsq_ = null;
@@ -151,6 +219,12 @@ public final class AParPrio7 extends PPrio7
             return;
         }
 
+        if(this._comandoSeCasado_ == child)
+        {
+            this._comandoSeCasado_ = null;
+            return;
+        }
+
         throw new RuntimeException("Not a child.");
     }
 
@@ -158,6 +232,12 @@ public final class AParPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._cmdEnquanto_ == oldChild)
+        {
+            setCmdEnquanto((TCmdEnquanto) newChild);
+            return;
+        }
+
         if(this._parEsq_ == oldChild)
         {
             setParEsq((TParEsq) newChild);
@@ -173,6 +253,12 @@ public final class AParPrio7 extends PPrio7
         if(this._parDir_ == oldChild)
         {
             setParDir((TParDir) newChild);
+            return;
+        }
+
+        if(this._comandoSeCasado_ == oldChild)
+        {
+            setComandoSeCasado((PComandoSeCasado) newChild);
             return;
         }
 

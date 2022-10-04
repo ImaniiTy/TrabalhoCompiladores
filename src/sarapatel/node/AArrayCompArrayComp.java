@@ -10,7 +10,7 @@ public final class AArrayCompArrayComp extends PArrayComp
     private TColEsq _colEsq_;
     private TId _id_;
     private TBarra _barra_;
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
     private TColDir _colDir_;
 
     public AArrayCompArrayComp()
@@ -22,7 +22,7 @@ public final class AArrayCompArrayComp extends PArrayComp
         @SuppressWarnings("hiding") TColEsq _colEsq_,
         @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") TBarra _barra_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
         @SuppressWarnings("hiding") TColDir _colDir_)
     {
         // Constructor
@@ -32,7 +32,7 @@ public final class AArrayCompArrayComp extends PArrayComp
 
         setBarra(_barra_);
 
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
         setColDir(_colDir_);
 
@@ -45,7 +45,7 @@ public final class AArrayCompArrayComp extends PArrayComp
             cloneNode(this._colEsq_),
             cloneNode(this._id_),
             cloneNode(this._barra_),
-            cloneNode(this._exp_),
+            cloneNode(this._ternarioExp_),
             cloneNode(this._colDir_));
     }
 
@@ -130,16 +130,16 @@ public final class AArrayCompArrayComp extends PArrayComp
         this._barra_ = node;
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -152,7 +152,7 @@ public final class AArrayCompArrayComp extends PArrayComp
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     public TColDir getColDir()
@@ -187,7 +187,7 @@ public final class AArrayCompArrayComp extends PArrayComp
             + toString(this._colEsq_)
             + toString(this._id_)
             + toString(this._barra_)
-            + toString(this._exp_)
+            + toString(this._ternarioExp_)
             + toString(this._colDir_);
     }
 
@@ -213,9 +213,9 @@ public final class AArrayCompArrayComp extends PArrayComp
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -250,9 +250,9 @@ public final class AArrayCompArrayComp extends PArrayComp
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 

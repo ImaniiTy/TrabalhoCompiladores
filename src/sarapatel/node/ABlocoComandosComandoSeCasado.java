@@ -5,46 +5,46 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ATernarioPrio7 extends PPrio7
+public final class ABlocoComandosComandoSeCasado extends PComandoSeCasado
 {
-    private PTernario _ternario_;
+    private PBlocoComandos _blocoComandos_;
 
-    public ATernarioPrio7()
+    public ABlocoComandosComandoSeCasado()
     {
         // Constructor
     }
 
-    public ATernarioPrio7(
-        @SuppressWarnings("hiding") PTernario _ternario_)
+    public ABlocoComandosComandoSeCasado(
+        @SuppressWarnings("hiding") PBlocoComandos _blocoComandos_)
     {
         // Constructor
-        setTernario(_ternario_);
+        setBlocoComandos(_blocoComandos_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ATernarioPrio7(
-            cloneNode(this._ternario_));
+        return new ABlocoComandosComandoSeCasado(
+            cloneNode(this._blocoComandos_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseATernarioPrio7(this);
+        ((Analysis) sw).caseABlocoComandosComandoSeCasado(this);
     }
 
-    public PTernario getTernario()
+    public PBlocoComandos getBlocoComandos()
     {
-        return this._ternario_;
+        return this._blocoComandos_;
     }
 
-    public void setTernario(PTernario node)
+    public void setBlocoComandos(PBlocoComandos node)
     {
-        if(this._ternario_ != null)
+        if(this._blocoComandos_ != null)
         {
-            this._ternario_.parent(null);
+            this._blocoComandos_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ATernarioPrio7 extends PPrio7
             node.parent(this);
         }
 
-        this._ternario_ = node;
+        this._blocoComandos_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._ternario_);
+            + toString(this._blocoComandos_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._ternario_ == child)
+        if(this._blocoComandos_ == child)
         {
-            this._ternario_ = null;
+            this._blocoComandos_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ATernarioPrio7 extends PPrio7
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._ternario_ == oldChild)
+        if(this._blocoComandos_ == oldChild)
         {
-            setTernario((PTernario) newChild);
+            setBlocoComandos((PBlocoComandos) newChild);
             return;
         }
 

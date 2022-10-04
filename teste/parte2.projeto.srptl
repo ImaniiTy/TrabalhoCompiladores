@@ -26,5 +26,5 @@ comece
 		termine
 	termine
 
-	imprima(arr);
+	imprima(se(trocou = verdade) arr senao 'falso');
 termine

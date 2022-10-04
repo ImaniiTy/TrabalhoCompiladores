@@ -5,46 +5,46 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AComandoSe extends PComandoSe
+public final class AComandoSeSolteiroComando extends PComando
 {
-    private PComando _comando_;
+    private PComandoSeSolteiro _comandoSeSolteiro_;
 
-    public AComandoSe()
+    public AComandoSeSolteiroComando()
     {
         // Constructor
     }
 
-    public AComandoSe(
-        @SuppressWarnings("hiding") PComando _comando_)
+    public AComandoSeSolteiroComando(
+        @SuppressWarnings("hiding") PComandoSeSolteiro _comandoSeSolteiro_)
     {
         // Constructor
-        setComando(_comando_);
+        setComandoSeSolteiro(_comandoSeSolteiro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AComandoSe(
-            cloneNode(this._comando_));
+        return new AComandoSeSolteiroComando(
+            cloneNode(this._comandoSeSolteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAComandoSe(this);
+        ((Analysis) sw).caseAComandoSeSolteiroComando(this);
     }
 
-    public PComando getComando()
+    public PComandoSeSolteiro getComandoSeSolteiro()
     {
-        return this._comando_;
+        return this._comandoSeSolteiro_;
     }
 
-    public void setComando(PComando node)
+    public void setComandoSeSolteiro(PComandoSeSolteiro node)
     {
-        if(this._comando_ != null)
+        if(this._comandoSeSolteiro_ != null)
         {
-            this._comando_.parent(null);
+            this._comandoSeSolteiro_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AComandoSe extends PComandoSe
             node.parent(this);
         }
 
-        this._comando_ = node;
+        this._comandoSeSolteiro_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._comando_);
+            + toString(this._comandoSeSolteiro_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._comando_ == child)
+        if(this._comandoSeSolteiro_ == child)
         {
-            this._comando_ = null;
+            this._comandoSeSolteiro_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AComandoSe extends PComandoSe
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._comando_ == oldChild)
+        if(this._comandoSeSolteiro_ == oldChild)
         {
-            setComando((PComando) newChild);
+            setComandoSeSolteiro((PComandoSeSolteiro) newChild);
             return;
         }
 

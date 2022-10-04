@@ -1,1 +1,4 @@
-const: inteiro j<<(13+4)*2;
+procedimento: diferentes()
+comece 
+imprima(se (verdade) 'true' senao 'false');
+termine

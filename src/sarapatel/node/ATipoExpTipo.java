@@ -9,7 +9,7 @@ public final class ATipoExpTipo extends PTipo
 {
     private PTipo _tipo_;
     private TColEsq _colEsq_;
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
     private TColDir _colDir_;
 
     public ATipoExpTipo()
@@ -20,7 +20,7 @@ public final class ATipoExpTipo extends PTipo
     public ATipoExpTipo(
         @SuppressWarnings("hiding") PTipo _tipo_,
         @SuppressWarnings("hiding") TColEsq _colEsq_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
         @SuppressWarnings("hiding") TColDir _colDir_)
     {
         // Constructor
@@ -28,7 +28,7 @@ public final class ATipoExpTipo extends PTipo
 
         setColEsq(_colEsq_);
 
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
         setColDir(_colDir_);
 
@@ -40,7 +40,7 @@ public final class ATipoExpTipo extends PTipo
         return new ATipoExpTipo(
             cloneNode(this._tipo_),
             cloneNode(this._colEsq_),
-            cloneNode(this._exp_),
+            cloneNode(this._ternarioExp_),
             cloneNode(this._colDir_));
     }
 
@@ -100,16 +100,16 @@ public final class ATipoExpTipo extends PTipo
         this._colEsq_ = node;
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -122,7 +122,7 @@ public final class ATipoExpTipo extends PTipo
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     public TColDir getColDir()
@@ -156,7 +156,7 @@ public final class ATipoExpTipo extends PTipo
         return ""
             + toString(this._tipo_)
             + toString(this._colEsq_)
-            + toString(this._exp_)
+            + toString(this._ternarioExp_)
             + toString(this._colDir_);
     }
 
@@ -176,9 +176,9 @@ public final class ATipoExpTipo extends PTipo
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -207,9 +207,9 @@ public final class ATipoExpTipo extends PTipo
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 

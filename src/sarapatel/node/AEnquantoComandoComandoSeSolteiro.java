@@ -5,54 +5,54 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AEnquantoComandoComando extends PComando
+public final class AEnquantoComandoComandoSeSolteiro extends PComandoSeSolteiro
 {
     private TCmdEnquanto _cmdEnquanto_;
     private TParEsq _parEsq_;
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
     private TParDir _parDir_;
-    private PComando _comando_;
+    private PComandoSeSolteiro _comandoSeSolteiro_;
 
-    public AEnquantoComandoComando()
+    public AEnquantoComandoComandoSeSolteiro()
     {
         // Constructor
     }
 
-    public AEnquantoComandoComando(
+    public AEnquantoComandoComandoSeSolteiro(
         @SuppressWarnings("hiding") TCmdEnquanto _cmdEnquanto_,
         @SuppressWarnings("hiding") TParEsq _parEsq_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
         @SuppressWarnings("hiding") TParDir _parDir_,
-        @SuppressWarnings("hiding") PComando _comando_)
+        @SuppressWarnings("hiding") PComandoSeSolteiro _comandoSeSolteiro_)
     {
         // Constructor
         setCmdEnquanto(_cmdEnquanto_);
 
         setParEsq(_parEsq_);
 
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
         setParDir(_parDir_);
 
-        setComando(_comando_);
+        setComandoSeSolteiro(_comandoSeSolteiro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AEnquantoComandoComando(
+        return new AEnquantoComandoComandoSeSolteiro(
             cloneNode(this._cmdEnquanto_),
             cloneNode(this._parEsq_),
-            cloneNode(this._exp_),
+            cloneNode(this._ternarioExp_),
             cloneNode(this._parDir_),
-            cloneNode(this._comando_));
+            cloneNode(this._comandoSeSolteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAEnquantoComandoComando(this);
+        ((Analysis) sw).caseAEnquantoComandoComandoSeSolteiro(this);
     }
 
     public TCmdEnquanto getCmdEnquanto()
@@ -105,16 +105,16 @@ public final class AEnquantoComandoComando extends PComando
         this._parEsq_ = node;
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -127,7 +127,7 @@ public final class AEnquantoComandoComando extends PComando
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     public TParDir getParDir()
@@ -155,16 +155,16 @@ public final class AEnquantoComandoComando extends PComando
         this._parDir_ = node;
     }
 
-    public PComando getComando()
+    public PComandoSeSolteiro getComandoSeSolteiro()
     {
-        return this._comando_;
+        return this._comandoSeSolteiro_;
     }
 
-    public void setComando(PComando node)
+    public void setComandoSeSolteiro(PComandoSeSolteiro node)
     {
-        if(this._comando_ != null)
+        if(this._comandoSeSolteiro_ != null)
         {
-            this._comando_.parent(null);
+            this._comandoSeSolteiro_.parent(null);
         }
 
         if(node != null)
@@ -177,7 +177,7 @@ public final class AEnquantoComandoComando extends PComando
             node.parent(this);
         }
 
-        this._comando_ = node;
+        this._comandoSeSolteiro_ = node;
     }
 
     @Override
@@ -186,9 +186,9 @@ public final class AEnquantoComandoComando extends PComando
         return ""
             + toString(this._cmdEnquanto_)
             + toString(this._parEsq_)
-            + toString(this._exp_)
+            + toString(this._ternarioExp_)
             + toString(this._parDir_)
-            + toString(this._comando_);
+            + toString(this._comandoSeSolteiro_);
     }
 
     @Override
@@ -207,9 +207,9 @@ public final class AEnquantoComandoComando extends PComando
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -219,9 +219,9 @@ public final class AEnquantoComandoComando extends PComando
             return;
         }
 
-        if(this._comando_ == child)
+        if(this._comandoSeSolteiro_ == child)
         {
-            this._comando_ = null;
+            this._comandoSeSolteiro_ = null;
             return;
         }
 
@@ -244,9 +244,9 @@ public final class AEnquantoComandoComando extends PComando
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 
@@ -256,9 +256,9 @@ public final class AEnquantoComandoComando extends PComando
             return;
         }
 
-        if(this._comando_ == oldChild)
+        if(this._comandoSeSolteiro_ == oldChild)
         {
-            setComando((PComando) newChild);
+            setComandoSeSolteiro((PComandoSeSolteiro) newChild);
             return;
         }
 

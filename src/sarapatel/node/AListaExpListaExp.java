@@ -8,7 +8,7 @@ import sarapatel.analysis.*;
 @SuppressWarnings("nls")
 public final class AListaExpListaExp extends PListaExp
 {
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
     private final LinkedList<PBarraExp> _barraExp_ = new LinkedList<PBarraExp>();
 
     public AListaExpListaExp()
@@ -17,11 +17,11 @@ public final class AListaExpListaExp extends PListaExp
     }
 
     public AListaExpListaExp(
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
         @SuppressWarnings("hiding") List<?> _barraExp_)
     {
         // Constructor
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
         setBarraExp(_barraExp_);
 
@@ -31,7 +31,7 @@ public final class AListaExpListaExp extends PListaExp
     public Object clone()
     {
         return new AListaExpListaExp(
-            cloneNode(this._exp_),
+            cloneNode(this._ternarioExp_),
             cloneList(this._barraExp_));
     }
 
@@ -41,16 +41,16 @@ public final class AListaExpListaExp extends PListaExp
         ((Analysis) sw).caseAListaExpListaExp(this);
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -63,7 +63,7 @@ public final class AListaExpListaExp extends PListaExp
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     public LinkedList<PBarraExp> getBarraExp()
@@ -96,7 +96,7 @@ public final class AListaExpListaExp extends PListaExp
     public String toString()
     {
         return ""
-            + toString(this._exp_)
+            + toString(this._ternarioExp_)
             + toString(this._barraExp_);
     }
 
@@ -104,9 +104,9 @@ public final class AListaExpListaExp extends PListaExp
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -122,9 +122,9 @@ public final class AListaExpListaExp extends PListaExp
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 

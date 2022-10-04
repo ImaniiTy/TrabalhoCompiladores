@@ -9,7 +9,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
 {
     private PValor _valor_;
     private TAtribuicao _atribuicao_;
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
 
     public AIdAtribuicaoIdAtribuicao()
     {
@@ -19,14 +19,14 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     public AIdAtribuicaoIdAtribuicao(
         @SuppressWarnings("hiding") PValor _valor_,
         @SuppressWarnings("hiding") TAtribuicao _atribuicao_,
-        @SuppressWarnings("hiding") PExp _exp_)
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_)
     {
         // Constructor
         setValor(_valor_);
 
         setAtribuicao(_atribuicao_);
 
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
     }
 
@@ -36,7 +36,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
         return new AIdAtribuicaoIdAtribuicao(
             cloneNode(this._valor_),
             cloneNode(this._atribuicao_),
-            cloneNode(this._exp_));
+            cloneNode(this._ternarioExp_));
     }
 
     @Override
@@ -95,16 +95,16 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
         this._atribuicao_ = node;
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
         return ""
             + toString(this._valor_)
             + toString(this._atribuicao_)
-            + toString(this._exp_);
+            + toString(this._ternarioExp_);
     }
 
     @Override
@@ -145,9 +145,9 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 

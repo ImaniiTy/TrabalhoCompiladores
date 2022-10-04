@@ -10,7 +10,7 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
 {
     private TInicioBloco _inicioBloco_;
     private final LinkedList<PProdDeclConst> _prodDeclConst_ = new LinkedList<PProdDeclConst>();
-    private PExp _exp_;
+    private PTernarioExp _ternarioExp_;
     private TFimBloco _fimBloco_;
 
     public ABlocoExpressoesBlocoExpressoes()
@@ -21,7 +21,7 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
     public ABlocoExpressoesBlocoExpressoes(
         @SuppressWarnings("hiding") TInicioBloco _inicioBloco_,
         @SuppressWarnings("hiding") List<?> _prodDeclConst_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
         @SuppressWarnings("hiding") TFimBloco _fimBloco_)
     {
         // Constructor
@@ -29,7 +29,7 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
 
         setProdDeclConst(_prodDeclConst_);
 
-        setExp(_exp_);
+        setTernarioExp(_ternarioExp_);
 
         setFimBloco(_fimBloco_);
 
@@ -41,7 +41,7 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
         return new ABlocoExpressoesBlocoExpressoes(
             cloneNode(this._inicioBloco_),
             cloneList(this._prodDeclConst_),
-            cloneNode(this._exp_),
+            cloneNode(this._ternarioExp_),
             cloneNode(this._fimBloco_));
     }
 
@@ -102,16 +102,16 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
         }
     }
 
-    public PExp getExp()
+    public PTernarioExp getTernarioExp()
     {
-        return this._exp_;
+        return this._ternarioExp_;
     }
 
-    public void setExp(PExp node)
+    public void setTernarioExp(PTernarioExp node)
     {
-        if(this._exp_ != null)
+        if(this._ternarioExp_ != null)
         {
-            this._exp_.parent(null);
+            this._ternarioExp_.parent(null);
         }
 
         if(node != null)
@@ -124,7 +124,7 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._ternarioExp_ = node;
     }
 
     public TFimBloco getFimBloco()
@@ -158,7 +158,7 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
         return ""
             + toString(this._inicioBloco_)
             + toString(this._prodDeclConst_)
-            + toString(this._exp_)
+            + toString(this._ternarioExp_)
             + toString(this._fimBloco_);
     }
 
@@ -177,9 +177,9 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._ternarioExp_ == child)
         {
-            this._exp_ = null;
+            this._ternarioExp_ = null;
             return;
         }
 
@@ -220,9 +220,9 @@ public final class ABlocoExpressoesBlocoExpressoes extends PBlocoExpressoes
             }
         }
 
-        if(this._exp_ == oldChild)
+        if(this._ternarioExp_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setTernarioExp((PTernarioExp) newChild);
             return;
         }
 

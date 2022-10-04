@@ -5,46 +5,46 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ABlocoComandosComando extends PComando
+public final class AComandoSeCasadoComando extends PComando
 {
-    private PBlocoComandos _blocoComandos_;
+    private PComandoSeCasado _comandoSeCasado_;
 
-    public ABlocoComandosComando()
+    public AComandoSeCasadoComando()
     {
         // Constructor
     }
 
-    public ABlocoComandosComando(
-        @SuppressWarnings("hiding") PBlocoComandos _blocoComandos_)
+    public AComandoSeCasadoComando(
+        @SuppressWarnings("hiding") PComandoSeCasado _comandoSeCasado_)
     {
         // Constructor
-        setBlocoComandos(_blocoComandos_);
+        setComandoSeCasado(_comandoSeCasado_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ABlocoComandosComando(
-            cloneNode(this._blocoComandos_));
+        return new AComandoSeCasadoComando(
+            cloneNode(this._comandoSeCasado_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseABlocoComandosComando(this);
+        ((Analysis) sw).caseAComandoSeCasadoComando(this);
     }
 
-    public PBlocoComandos getBlocoComandos()
+    public PComandoSeCasado getComandoSeCasado()
     {
-        return this._blocoComandos_;
+        return this._comandoSeCasado_;
     }
 
-    public void setBlocoComandos(PBlocoComandos node)
+    public void setComandoSeCasado(PComandoSeCasado node)
     {
-        if(this._blocoComandos_ != null)
+        if(this._comandoSeCasado_ != null)
         {
-            this._blocoComandos_.parent(null);
+            this._comandoSeCasado_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ABlocoComandosComando extends PComando
             node.parent(this);
         }
 
-        this._blocoComandos_ = node;
+        this._comandoSeCasado_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._blocoComandos_);
+            + toString(this._comandoSeCasado_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._blocoComandos_ == child)
+        if(this._comandoSeCasado_ == child)
         {
-            this._blocoComandos_ = null;
+            this._comandoSeCasado_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ABlocoComandosComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._blocoComandos_ == oldChild)
+        if(this._comandoSeCasado_ == oldChild)
         {
-            setBlocoComandos((PBlocoComandos) newChild);
+            setComandoSeCasado((PComandoSeCasado) newChild);
             return;
         }
 

@@ -189,6 +189,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAVazioParametros(AVazioParametros node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseABarraParametroBarraParametro(ABarraParametroBarraParametro node)
     {
         defaultCase(node);
@@ -213,43 +219,61 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseASeSimplesComandoComandoSe(ASeSimplesComandoComandoSe node)
+    public void caseAComandoSeSolteiroComandoSeSolteiro(AComandoSeSolteiroComandoSeSolteiro node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseASeTernarioComandoComandoSe(ASeTernarioComandoComandoSe node)
+    public void caseAComandoSeSenaoSolteiroComandoSeSolteiro(AComandoSeSenaoSolteiroComandoSeSolteiro node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAComandoSe(AComandoSe node)
+    public void caseAEnquantoComandoComandoSeSolteiro(AEnquantoComandoComandoSeSolteiro node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAEnquantoComandoComando(AEnquantoComandoComando node)
+    public void caseAComandoSeSenaoCasadoComandoSeCasado(AComandoSeSenaoCasadoComandoSeCasado node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIdAtribuicaoComandoComando(AIdAtribuicaoComandoComando node)
+    public void caseAEnquantoComandoComandoSeCasado(AEnquantoComandoComandoSeCasado node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAChamadaProcedimentoComandoComando(AChamadaProcedimentoComandoComando node)
+    public void caseAIdAtribuicaoComandoComandoSeCasado(AIdAtribuicaoComandoComandoSeCasado node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseABlocoComandosComando(ABlocoComandosComando node)
+    public void caseAChamadaProcedimentoComandoComandoSeCasado(AChamadaProcedimentoComandoComandoSeCasado node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABlocoComandosComandoSeCasado(ABlocoComandosComandoSeCasado node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoSeCasadoComando(AComandoSeCasadoComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoSeSolteiroComando(AComandoSeSolteiroComando node)
     {
         defaultCase(node);
     }
@@ -292,6 +316,24 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAListaExpListaExp(AListaExpListaExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVazioListaExp(AVazioListaExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATernarioTernarioExp(ATernarioTernarioExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpTernario(AExpTernario node)
     {
         defaultCase(node);
     }
@@ -447,6 +489,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseACadeiaPrio7(ACadeiaPrio7 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAValorPrio7(AValorPrio7 node)
     {
         defaultCase(node);
@@ -460,12 +508,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAArrayCompPrio7(AArrayCompPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseATernarioPrio7(ATernarioPrio7 node)
     {
         defaultCase(node);
     }

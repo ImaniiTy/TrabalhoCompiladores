@@ -8,7 +8,7 @@ import java.io.*;
 public class Main {
 	public static void main(String[] args) {
 		try {
-			String arquivo = "teste/parte2.projeto.srptl";
+			String arquivo = "teste/parte3.projeto.srptl";
 
 			Lexer lexer = new Lexer(
 					new PushbackReader(

@@ -5,22 +5,22 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AChamadaProcedimentoComandoComando extends PComando
+public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
 {
-    private PChamadaProcedimento _chamadaProcedimento_;
+    private PIdAtribuicao _idAtribuicao_;
     private TPontoVirgula _pontoVirgula_;
 
-    public AChamadaProcedimentoComandoComando()
+    public AIdAtribuicaoComandoComandoSeCasado()
     {
         // Constructor
     }
 
-    public AChamadaProcedimentoComandoComando(
-        @SuppressWarnings("hiding") PChamadaProcedimento _chamadaProcedimento_,
+    public AIdAtribuicaoComandoComandoSeCasado(
+        @SuppressWarnings("hiding") PIdAtribuicao _idAtribuicao_,
         @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
     {
         // Constructor
-        setChamadaProcedimento(_chamadaProcedimento_);
+        setIdAtribuicao(_idAtribuicao_);
 
         setPontoVirgula(_pontoVirgula_);
 
@@ -29,27 +29,27 @@ public final class AChamadaProcedimentoComandoComando extends PComando
     @Override
     public Object clone()
     {
-        return new AChamadaProcedimentoComandoComando(
-            cloneNode(this._chamadaProcedimento_),
+        return new AIdAtribuicaoComandoComandoSeCasado(
+            cloneNode(this._idAtribuicao_),
             cloneNode(this._pontoVirgula_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAChamadaProcedimentoComandoComando(this);
+        ((Analysis) sw).caseAIdAtribuicaoComandoComandoSeCasado(this);
     }
 
-    public PChamadaProcedimento getChamadaProcedimento()
+    public PIdAtribuicao getIdAtribuicao()
     {
-        return this._chamadaProcedimento_;
+        return this._idAtribuicao_;
     }
 
-    public void setChamadaProcedimento(PChamadaProcedimento node)
+    public void setIdAtribuicao(PIdAtribuicao node)
     {
-        if(this._chamadaProcedimento_ != null)
+        if(this._idAtribuicao_ != null)
         {
-            this._chamadaProcedimento_.parent(null);
+            this._idAtribuicao_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class AChamadaProcedimentoComandoComando extends PComando
             node.parent(this);
         }
 
-        this._chamadaProcedimento_ = node;
+        this._idAtribuicao_ = node;
     }
 
     public TPontoVirgula getPontoVirgula()
@@ -94,7 +94,7 @@ public final class AChamadaProcedimentoComandoComando extends PComando
     public String toString()
     {
         return ""
-            + toString(this._chamadaProcedimento_)
+            + toString(this._idAtribuicao_)
             + toString(this._pontoVirgula_);
     }
 
@@ -102,9 +102,9 @@ public final class AChamadaProcedimentoComandoComando extends PComando
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._chamadaProcedimento_ == child)
+        if(this._idAtribuicao_ == child)
         {
-            this._chamadaProcedimento_ = null;
+            this._idAtribuicao_ = null;
             return;
         }
 
@@ -121,9 +121,9 @@ public final class AChamadaProcedimentoComandoComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._chamadaProcedimento_ == oldChild)
+        if(this._idAtribuicao_ == oldChild)
         {
-            setChamadaProcedimento((PChamadaProcedimento) newChild);
+            setIdAtribuicao((PIdAtribuicao) newChild);
             return;
         }
 
