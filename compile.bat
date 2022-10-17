@@ -7,4 +7,4 @@ rmdir "src/%1/parser" /S /Q
 
 echo All files deleted
 
-C:\sablecc\bin\sablecc.bat "src/%1.sable"
+java -jar C:\sablecc\lib\sablecc.jar "src/%1.sable"
