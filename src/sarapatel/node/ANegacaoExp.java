@@ -5,23 +5,19 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
+public final class ANegacaoExp extends PExp
 {
-    private PValor _valor_;
     private PExp _exp_;
 
-    public AIdAtribuicaoIdAtribuicao()
+    public ANegacaoExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoIdAtribuicao(
-        @SuppressWarnings("hiding") PValor _valor_,
+    public ANegacaoExp(
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setValor(_valor_);
-
         setExp(_exp_);
 
     }
@@ -29,40 +25,14 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoIdAtribuicao(
-            cloneNode(this._valor_),
+        return new ANegacaoExp(
             cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoIdAtribuicao(this);
-    }
-
-    public PValor getValor()
-    {
-        return this._valor_;
-    }
-
-    public void setValor(PValor node)
-    {
-        if(this._valor_ != null)
-        {
-            this._valor_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._valor_ = node;
+        ((Analysis) sw).caseANegacaoExp(this);
     }
 
     public PExp getExp()
@@ -94,7 +64,6 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     public String toString()
     {
         return ""
-            + toString(this._valor_)
             + toString(this._exp_);
     }
 
@@ -102,12 +71,6 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._valor_ == child)
-        {
-            this._valor_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
@@ -121,12 +84,6 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._valor_ == oldChild)
-        {
-            setValor((PValor) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);

@@ -8,7 +8,6 @@ import sarapatel.analysis.*;
 public final class AChamadaProcedimentoComandoComandoSeCasado extends PComandoSeCasado
 {
     private PChamadaProcedimento _chamadaProcedimento_;
-    private TPontoVirgula _pontoVirgula_;
 
     public AChamadaProcedimentoComandoComandoSeCasado()
     {
@@ -16,13 +15,10 @@ public final class AChamadaProcedimentoComandoComandoSeCasado extends PComandoSe
     }
 
     public AChamadaProcedimentoComandoComandoSeCasado(
-        @SuppressWarnings("hiding") PChamadaProcedimento _chamadaProcedimento_,
-        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
+        @SuppressWarnings("hiding") PChamadaProcedimento _chamadaProcedimento_)
     {
         // Constructor
         setChamadaProcedimento(_chamadaProcedimento_);
-
-        setPontoVirgula(_pontoVirgula_);
 
     }
 
@@ -30,8 +26,7 @@ public final class AChamadaProcedimentoComandoComandoSeCasado extends PComandoSe
     public Object clone()
     {
         return new AChamadaProcedimentoComandoComandoSeCasado(
-            cloneNode(this._chamadaProcedimento_),
-            cloneNode(this._pontoVirgula_));
+            cloneNode(this._chamadaProcedimento_));
     }
 
     @Override
@@ -65,37 +60,11 @@ public final class AChamadaProcedimentoComandoComandoSeCasado extends PComandoSe
         this._chamadaProcedimento_ = node;
     }
 
-    public TPontoVirgula getPontoVirgula()
-    {
-        return this._pontoVirgula_;
-    }
-
-    public void setPontoVirgula(TPontoVirgula node)
-    {
-        if(this._pontoVirgula_ != null)
-        {
-            this._pontoVirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoVirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._chamadaProcedimento_)
-            + toString(this._pontoVirgula_);
+            + toString(this._chamadaProcedimento_);
     }
 
     @Override
@@ -105,12 +74,6 @@ public final class AChamadaProcedimentoComandoComandoSeCasado extends PComandoSe
         if(this._chamadaProcedimento_ == child)
         {
             this._chamadaProcedimento_ = null;
-            return;
-        }
-
-        if(this._pontoVirgula_ == child)
-        {
-            this._pontoVirgula_ = null;
             return;
         }
 
@@ -124,12 +87,6 @@ public final class AChamadaProcedimentoComandoComandoSeCasado extends PComandoSe
         if(this._chamadaProcedimento_ == oldChild)
         {
             setChamadaProcedimento((PChamadaProcedimento) newChild);
-            return;
-        }
-
-        if(this._pontoVirgula_ == oldChild)
-        {
-            setPontoVirgula((TPontoVirgula) newChild);
             return;
         }
 

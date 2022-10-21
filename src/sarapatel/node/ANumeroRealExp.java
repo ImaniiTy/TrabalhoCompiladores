@@ -5,46 +5,46 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
+public final class ANumeroRealExp extends PExp
 {
-    private PIdAtribuicao _idAtribuicao_;
+    private TNumeroReal _numeroReal_;
 
-    public AIdAtribuicaoComandoComandoSeCasado()
+    public ANumeroRealExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoComandoComandoSeCasado(
-        @SuppressWarnings("hiding") PIdAtribuicao _idAtribuicao_)
+    public ANumeroRealExp(
+        @SuppressWarnings("hiding") TNumeroReal _numeroReal_)
     {
         // Constructor
-        setIdAtribuicao(_idAtribuicao_);
+        setNumeroReal(_numeroReal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoComandoComandoSeCasado(
-            cloneNode(this._idAtribuicao_));
+        return new ANumeroRealExp(
+            cloneNode(this._numeroReal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoComandoComandoSeCasado(this);
+        ((Analysis) sw).caseANumeroRealExp(this);
     }
 
-    public PIdAtribuicao getIdAtribuicao()
+    public TNumeroReal getNumeroReal()
     {
-        return this._idAtribuicao_;
+        return this._numeroReal_;
     }
 
-    public void setIdAtribuicao(PIdAtribuicao node)
+    public void setNumeroReal(TNumeroReal node)
     {
-        if(this._idAtribuicao_ != null)
+        if(this._numeroReal_ != null)
         {
-            this._idAtribuicao_.parent(null);
+            this._numeroReal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
             node.parent(this);
         }
 
-        this._idAtribuicao_ = node;
+        this._numeroReal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._idAtribuicao_);
+            + toString(this._numeroReal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._idAtribuicao_ == child)
+        if(this._numeroReal_ == child)
         {
-            this._idAtribuicao_ = null;
+            this._numeroReal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._idAtribuicao_ == oldChild)
+        if(this._numeroReal_ == oldChild)
         {
-            setIdAtribuicao((PIdAtribuicao) newChild);
+            setNumeroReal((TNumeroReal) newChild);
             return;
         }
 

@@ -7,14 +7,10 @@ import sarapatel.analysis.*;
 @SuppressWarnings("nls")
 public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
 {
-    private TDeclFuncao _declFuncao_;
-    private TDoisPontos _doisPontos_;
     private PTipo _tipo_;
     private TId _id_;
-    private TParEsq _parEsq_;
     private PParametros _parametros_;
-    private TParDir _parDir_;
-    private PTernarioExp _ternarioExp_;
+    private PExp _exp_;
 
     public AProdDeclFuncaoProdDeclFuncao()
     {
@@ -22,31 +18,19 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
     }
 
     public AProdDeclFuncaoProdDeclFuncao(
-        @SuppressWarnings("hiding") TDeclFuncao _declFuncao_,
-        @SuppressWarnings("hiding") TDoisPontos _doisPontos_,
         @SuppressWarnings("hiding") PTipo _tipo_,
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TParEsq _parEsq_,
         @SuppressWarnings("hiding") PParametros _parametros_,
-        @SuppressWarnings("hiding") TParDir _parDir_,
-        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setDeclFuncao(_declFuncao_);
-
-        setDoisPontos(_doisPontos_);
-
         setTipo(_tipo_);
 
         setId(_id_);
 
-        setParEsq(_parEsq_);
-
         setParametros(_parametros_);
 
-        setParDir(_parDir_);
-
-        setTernarioExp(_ternarioExp_);
+        setExp(_exp_);
 
     }
 
@@ -54,70 +38,16 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
     public Object clone()
     {
         return new AProdDeclFuncaoProdDeclFuncao(
-            cloneNode(this._declFuncao_),
-            cloneNode(this._doisPontos_),
             cloneNode(this._tipo_),
             cloneNode(this._id_),
-            cloneNode(this._parEsq_),
             cloneNode(this._parametros_),
-            cloneNode(this._parDir_),
-            cloneNode(this._ternarioExp_));
+            cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAProdDeclFuncaoProdDeclFuncao(this);
-    }
-
-    public TDeclFuncao getDeclFuncao()
-    {
-        return this._declFuncao_;
-    }
-
-    public void setDeclFuncao(TDeclFuncao node)
-    {
-        if(this._declFuncao_ != null)
-        {
-            this._declFuncao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._declFuncao_ = node;
-    }
-
-    public TDoisPontos getDoisPontos()
-    {
-        return this._doisPontos_;
-    }
-
-    public void setDoisPontos(TDoisPontos node)
-    {
-        if(this._doisPontos_ != null)
-        {
-            this._doisPontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doisPontos_ = node;
     }
 
     public PTipo getTipo()
@@ -170,31 +100,6 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
         this._id_ = node;
     }
 
-    public TParEsq getParEsq()
-    {
-        return this._parEsq_;
-    }
-
-    public void setParEsq(TParEsq node)
-    {
-        if(this._parEsq_ != null)
-        {
-            this._parEsq_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parEsq_ = node;
-    }
-
     public PParametros getParametros()
     {
         return this._parametros_;
@@ -220,16 +125,16 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
         this._parametros_ = node;
     }
 
-    public TParDir getParDir()
+    public PExp getExp()
     {
-        return this._parDir_;
+        return this._exp_;
     }
 
-    public void setParDir(TParDir node)
+    public void setExp(PExp node)
     {
-        if(this._parDir_ != null)
+        if(this._exp_ != null)
         {
-            this._parDir_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -242,64 +147,23 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
             node.parent(this);
         }
 
-        this._parDir_ = node;
-    }
-
-    public PTernarioExp getTernarioExp()
-    {
-        return this._ternarioExp_;
-    }
-
-    public void setTernarioExp(PTernarioExp node)
-    {
-        if(this._ternarioExp_ != null)
-        {
-            this._ternarioExp_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ternarioExp_ = node;
+        this._exp_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._declFuncao_)
-            + toString(this._doisPontos_)
             + toString(this._tipo_)
             + toString(this._id_)
-            + toString(this._parEsq_)
             + toString(this._parametros_)
-            + toString(this._parDir_)
-            + toString(this._ternarioExp_);
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._declFuncao_ == child)
-        {
-            this._declFuncao_ = null;
-            return;
-        }
-
-        if(this._doisPontos_ == child)
-        {
-            this._doisPontos_ = null;
-            return;
-        }
-
         if(this._tipo_ == child)
         {
             this._tipo_ = null;
@@ -312,27 +176,15 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
             return;
         }
 
-        if(this._parEsq_ == child)
-        {
-            this._parEsq_ = null;
-            return;
-        }
-
         if(this._parametros_ == child)
         {
             this._parametros_ = null;
             return;
         }
 
-        if(this._parDir_ == child)
+        if(this._exp_ == child)
         {
-            this._parDir_ = null;
-            return;
-        }
-
-        if(this._ternarioExp_ == child)
-        {
-            this._ternarioExp_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -343,18 +195,6 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._declFuncao_ == oldChild)
-        {
-            setDeclFuncao((TDeclFuncao) newChild);
-            return;
-        }
-
-        if(this._doisPontos_ == oldChild)
-        {
-            setDoisPontos((TDoisPontos) newChild);
-            return;
-        }
-
         if(this._tipo_ == oldChild)
         {
             setTipo((PTipo) newChild);
@@ -367,27 +207,15 @@ public final class AProdDeclFuncaoProdDeclFuncao extends PProdDeclFuncao
             return;
         }
 
-        if(this._parEsq_ == oldChild)
-        {
-            setParEsq((TParEsq) newChild);
-            return;
-        }
-
         if(this._parametros_ == oldChild)
         {
             setParametros((PParametros) newChild);
             return;
         }
 
-        if(this._parDir_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setParDir((TParDir) newChild);
-            return;
-        }
-
-        if(this._ternarioExp_ == oldChild)
-        {
-            setTernarioExp((PTernarioExp) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

@@ -2,25 +2,26 @@
 
 package sarapatel.node;
 
+import java.util.*;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
+public final class ABlocoExpressoesExp extends PExp
 {
-    private PValor _valor_;
+    private final LinkedList<PProdDeclConst> _listaDeclConst_ = new LinkedList<PProdDeclConst>();
     private PExp _exp_;
 
-    public AIdAtribuicaoIdAtribuicao()
+    public ABlocoExpressoesExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoIdAtribuicao(
-        @SuppressWarnings("hiding") PValor _valor_,
+    public ABlocoExpressoesExp(
+        @SuppressWarnings("hiding") List<?> _listaDeclConst_,
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setValor(_valor_);
+        setListaDeclConst(_listaDeclConst_);
 
         setExp(_exp_);
 
@@ -29,40 +30,41 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoIdAtribuicao(
-            cloneNode(this._valor_),
+        return new ABlocoExpressoesExp(
+            cloneList(this._listaDeclConst_),
             cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoIdAtribuicao(this);
+        ((Analysis) sw).caseABlocoExpressoesExp(this);
     }
 
-    public PValor getValor()
+    public LinkedList<PProdDeclConst> getListaDeclConst()
     {
-        return this._valor_;
+        return this._listaDeclConst_;
     }
 
-    public void setValor(PValor node)
+    public void setListaDeclConst(List<?> list)
     {
-        if(this._valor_ != null)
+        for(PProdDeclConst e : this._listaDeclConst_)
         {
-            this._valor_.parent(null);
+            e.parent(null);
         }
+        this._listaDeclConst_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PProdDeclConst e = (PProdDeclConst) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._listaDeclConst_.add(e);
         }
-
-        this._valor_ = node;
     }
 
     public PExp getExp()
@@ -94,7 +96,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     public String toString()
     {
         return ""
-            + toString(this._valor_)
+            + toString(this._listaDeclConst_)
             + toString(this._exp_);
     }
 
@@ -102,9 +104,8 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._valor_ == child)
+        if(this._listaDeclConst_.remove(child))
         {
-            this._valor_ = null;
             return;
         }
 
@@ -121,10 +122,22 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._valor_ == oldChild)
+        for(ListIterator<PProdDeclConst> i = this._listaDeclConst_.listIterator(); i.hasNext();)
         {
-            setValor((PValor) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PProdDeclConst) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(this._exp_ == oldChild)

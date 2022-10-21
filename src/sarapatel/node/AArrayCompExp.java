@@ -5,22 +5,22 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
+public final class AArrayCompExp extends PExp
 {
-    private PValor _valor_;
+    private TId _id_;
     private PExp _exp_;
 
-    public AIdAtribuicaoIdAtribuicao()
+    public AArrayCompExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoIdAtribuicao(
-        @SuppressWarnings("hiding") PValor _valor_,
+    public AArrayCompExp(
+        @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setValor(_valor_);
+        setId(_id_);
 
         setExp(_exp_);
 
@@ -29,27 +29,27 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoIdAtribuicao(
-            cloneNode(this._valor_),
+        return new AArrayCompExp(
+            cloneNode(this._id_),
             cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoIdAtribuicao(this);
+        ((Analysis) sw).caseAArrayCompExp(this);
     }
 
-    public PValor getValor()
+    public TId getId()
     {
-        return this._valor_;
+        return this._id_;
     }
 
-    public void setValor(PValor node)
+    public void setId(TId node)
     {
-        if(this._valor_ != null)
+        if(this._id_ != null)
         {
-            this._valor_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
             node.parent(this);
         }
 
-        this._valor_ = node;
+        this._id_ = node;
     }
 
     public PExp getExp()
@@ -94,7 +94,7 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     public String toString()
     {
         return ""
-            + toString(this._valor_)
+            + toString(this._id_)
             + toString(this._exp_);
     }
 
@@ -102,9 +102,9 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._valor_ == child)
+        if(this._id_ == child)
         {
-            this._valor_ = null;
+            this._id_ = null;
             return;
         }
 
@@ -121,9 +121,9 @@ public final class AIdAtribuicaoIdAtribuicao extends PIdAtribuicao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._valor_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setValor((PValor) newChild);
+            setId((TId) newChild);
             return;
         }
 

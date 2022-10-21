@@ -83,18 +83,18 @@ Productions
         {var_id} decl_var dois_pontos tipo id ponto_virgula
         |{var_id_atribuicao} decl_var dois_pontos tipo id_atribuicao ponto_virgula;
 
-    prod_decl_const =
-        {constante} decl_const dois_pontos tipo id_atribuicao ponto_virgula;
+    prod_decl_const {-> prod_decl_const} =
+        {constante} decl_const dois_pontos tipo id_atribuicao ponto_virgula {-> New prod_decl_const.constante(tipo, id_atribuicao)};
 
-    id_atribuicao =
-        {id_atribuicao} valor atribuicao ternario_exp;
+    id_atribuicao {-> id_atribuicao} =
+        {id_atribuicao} valor atribuicao ternario {-> New id_atribuicao.id_atribuicao(valor, ternario.exp)};
 
-    array_comp =
-        {array_comp} col_esq id barra ternario_exp col_dir;
+    array_comp {-> exp} =
+        {array_comp} col_esq id barra ternario col_dir {-> New exp.array_comp(id, ternario.exp)};
 
-    tipo = 
-        {tipo_base} tipo_base
-        | {tipo_exp} tipo col_esq ternario_exp col_dir;
+    tipo {-> tipo}= 
+        {tipo_base} tipo_base {-> New tipo.tipo_base(tipo_base)}
+        | {tipo_exp} tipo col_esq ternario col_dir {-> New tipo.tipo_exp(tipo, ternario.exp)};
 
     tipo_base =
         {tipo_inteiro} tipo_inteiro
@@ -105,8 +105,8 @@ Productions
     prod_decl_procedimento = 
         {prod_decl_procedimento} partida? decl_procedimento dois_pontos id par_esq parametros par_dir comando;
 
-    prod_decl_funcao = 
-        {prod_decl_funcao} decl_funcao dois_pontos tipo id par_esq parametros par_dir ternario_exp;
+    prod_decl_funcao {-> prod_decl_funcao} = 
+        {prod_decl_funcao} decl_funcao dois_pontos tipo id par_esq parametros par_dir ternario {-> New prod_decl_funcao.prod_decl_funcao(tipo, id, parametros, ternario.exp)};
 
     parametros = 
         {parametro} parametro barra_parametro*
@@ -122,17 +122,17 @@ Productions
         {tipo_base} tipo_base 
         | {tipo_parametro} tipo_parametro col_esq col_dir;
     
-    comando_se_solteiro = 
-        {comando_se_solteiro} cmd_se par_esq ternario_exp par_dir comando
-        | {comando_se_senao_solteiro} cmd_se par_esq ternario_exp par_dir [comando_se]:comando_se_casado cmd_senao [comando_senao]:comando_se_solteiro
-        | {enquanto_comando} cmd_enquanto par_esq ternario_exp par_dir comando_se_solteiro;
+    comando_se_solteiro {-> comando_se_solteiro} = 
+        {comando_se_solteiro} cmd_se par_esq ternario par_dir comando {-> New comando_se_solteiro.comando_se_solteiro(ternario.exp, comando)}
+        | {comando_se_senao_solteiro} cmd_se par_esq ternario par_dir [comando_se]:comando_se_casado cmd_senao [comando_senao]:comando_se_solteiro {-> New comando_se_solteiro.comando_se_senao_solteiro(ternario.exp, comando_se.comando_se_casado, comando_senao.comando_se_solteiro)}
+        | {enquanto_comando} cmd_enquanto par_esq ternario par_dir comando_se_solteiro {-> New comando_se_solteiro.enquanto_comando(ternario.exp, comando_se_solteiro)};
 
-    comando_se_casado = 
-        {comando_se_senao_casado} cmd_se par_esq ternario_exp par_dir [comando_se]:comando_se_casado cmd_senao [comando_senao]:comando_se_casado
-        | {enquanto_comando} cmd_enquanto par_esq ternario_exp par_dir comando_se_casado
-        | {id_atribuicao_comando} id_atribuicao ponto_virgula
-        | {chamada_procedimento_comando} chamada_procedimento ponto_virgula
-        | {bloco_comandos} bloco_comandos;
+    comando_se_casado {-> comando_se_casado} = 
+        {comando_se_senao_casado} cmd_se par_esq ternario par_dir [comando_se]:comando_se_casado cmd_senao [comando_senao]:comando_se_casado  {-> New comando_se_casado.comando_se_senao_casado(ternario.exp, comando_se.comando_se_casado, comando_senao.comando_se_casado)}
+        | {enquanto_comando} cmd_enquanto par_esq ternario par_dir comando_se_casado {-> New comando_se_casado.enquanto_comando(ternario.exp, comando_se_casado)}
+        | {id_atribuicao_comando} id_atribuicao ponto_virgula {-> New comando_se_casado.id_atribuicao_comando(id_atribuicao)}
+        | {chamada_procedimento_comando} chamada_procedimento ponto_virgula {-> New comando_se_casado.chamada_procedimento_comando(chamada_procedimento)}
+        | {bloco_comandos} bloco_comandos {-> New comando_se_casado.bloco_comandos(bloco_comandos)};
 
     comando = 
         {comando_se_casado} comando_se_casado
@@ -141,72 +141,218 @@ Productions
     bloco_comandos = 
         {bloco_comandos} inicio_bloco programa_esq* comando* fim_bloco;
     
-    valor = 
-        {valor} id
-        | {valor_array} valor col_esq ternario_exp col_dir;
+    valor {-> valor} = 
+        {valor} id {-> New valor.valor(id)}
+        | {valor_array} valor col_esq ternario col_dir {-> New valor.valor_array(valor, ternario.exp)};
 
-    bloco_expressoes = 
-        {bloco_expressoes} inicio_bloco prod_decl_const* ternario_exp fim_bloco;
+    bloco_expressoes {-> exp}= 
+        {bloco_expressoes} inicio_bloco prod_decl_const* ternario fim_bloco {-> New exp.bloco_expressoes([prod_decl_const], ternario.exp)};
 
-    chamada_funcao = 
-        {chamada_funcao} id par_esq lista_exp par_dir;
+    chamada_funcao {-> exp} = 
+        {chamada_funcao} id par_esq lista_exp par_dir {-> New exp.chamada_funcao(id, [lista_exp.exp])};
 
-    chamada_procedimento = 
-        {chamada_procedimento} id par_esq lista_exp par_dir;
+    chamada_procedimento {-> chamada_procedimento} = 
+        {chamada_procedimento} [name]: id par_esq [args]: lista_exp par_dir {-> New chamada_procedimento.chamada(name, [args.exp])};
 
-    lista_exp = 
-        {lista_exp} ternario_exp barra_exp*
-        | {vazio};
-
-    ternario_exp = {ternario} ternario;
+    lista_exp {-> exp*} = 
+        {ternario} ternario {-> [ternario.exp]}
+        | {lista_exp} ternario barra lista_exp {-> [ternario.exp, lista_exp.exp]}
+        | {vazio} {-> [New exp.vazio()]};
     
-    ternario = 
-        {exp} exp
-        | {ternario} cmd_se par_esq exp par_dir [ternario_verdade]:ternario cmd_senao [ternario_falso]:ternario;
+    ternario {-> exp} = 
+        {exp} exp  {-> exp.exp}
+        // | {ternario} cmd_se par_esq exp par_dir [ternario_verdade]:ternario cmd_senao [ternario_falso]:ternario;
+        | {ternario} cmd_se par_esq exp par_dir [ternario_verdade]:ternario cmd_senao [ternario_falso]:ternario {-> New exp.ternario(exp.exp, ternario_verdade.exp, ternario_falso.exp)};
 
-    barra_exp = 
-        {barra_exp} barra ternario_exp;
+    // barra_exp {-> exp}= 
+    //     {barra_exp} barra ternario {-> ternario.exp};
     
-    exp =
-        {prio1} prio1 
-        |{comp_ou} exp comp_ou prio1;
+    exp {-> exp} =
+        {prio1} prio1 {-> prio1.exp}
+        |{comp_ou} exp comp_ou prio1 {-> New exp.ou(exp.exp, prio1.exp)};
 
-    prio1 =
-        {prio2} prio2
-        |{comp_e} prio1 comp_e prio2;
+    prio1 {-> exp} =
+        {prio2} prio2 {-> prio2.exp}
+        |{comp_e} prio1 comp_e prio2 {-> New exp.e(prio1.exp, prio2.exp)};
 
-    prio2 =
-        {prio3} prio3
-        |{igual} prio2 igual prio3;
+    prio2 {-> exp} =
+        {prio3} prio3 {-> prio3.exp}
+        |{igual} prio2 igual prio3 {-> New exp.igual(prio2.exp, prio3.exp)};
 
-    prio3 =
-        {prio4} prio4
-        |{maior_igual} prio3 maior_igual prio4
-        |{maior} prio3 maior prio4;
+    prio3 {-> exp} =
+        {prio4} prio4 {-> prio4.exp}
+        |{maior_igual} prio3 maior_igual prio4 {-> New exp.maior_igual(prio3.exp, prio4.exp)}
+        |{maior} prio3 maior prio4 {-> New exp.maior(prio3.exp, prio4.exp)};
     
-    prio4 =
-        {prio5} prio5
-        |{soma} prio4 soma prio5
-        |{menos} prio4 menos prio5;
+    prio4 {-> exp} =
+        {prio5} prio5 {-> prio5.exp}
+        |{soma} prio4 soma prio5 {-> New exp.soma(prio4.exp, prio5.exp)}
+        |{menos} prio4 menos prio5 {-> New exp.menos(prio4.exp, prio5.exp)};
 
-    prio5 =
-        {prio6} prio6
-        |{mult} prio5 mult prio6
-        |{div} prio5 div prio6
-        |{mod} prio5 mod prio6;
+    prio5 {-> exp} =
+        {prio6} prio6 {-> prio6.exp}
+        |{mult} prio5 mult prio6 {-> New exp.mult(prio5.exp, prio6.exp)}
+        |{div} prio5 div prio6 {-> New exp.div(prio5.exp, prio6.exp)}
+        |{mod} prio5 mod prio6 {-> New exp.mod(prio5.exp, prio6.exp)};
         
-    prio6 =
-        {prio7} prio7
-        |{negacao} negacao prio7
-        |{negativo} menos prio7;
+    prio6 {-> exp} =
+        {prio7} prio7 {-> prio7.exp}
+        |{negacao} negacao prio7 {-> New exp.negacao(prio7.exp)}
+        |{negativo} menos prio7 {-> New exp.negativo(prio7.exp)};
 
-    prio7 =
-        {numero_int} numero_int
+    prio7 {-> exp} =
+        {numero_int} numero_int {-> New exp.numero_int(numero_int)}
+        |{numero_real} numero_real {-> New exp.numero_real(numero_real)}
+        |{cadeia} cadeia {-> New exp.cadeia(cadeia)}
+        |{verdade} verdade {-> New exp.verdade(verdade)}
+        |{falso} falso {-> New exp.falso(falso)}
+        |{valor} valor {-> New exp.valor(valor)}
+        |{chamada_funcao} chamada_funcao  {-> chamada_funcao.exp}
+        |{bloco_expressoes} bloco_expressoes  {-> bloco_expressoes.exp}
+        |{array_comp} array_comp  {-> array_comp.exp}
+        |{par} par_esq ternario par_dir {-> ternario.exp};
+
+Abstract Syntax Tree
+    entrada =
+     {programa} programa_esq* programa_dir+
+     ;
+
+    programa_esq =
+     {prod_decl_var} prod_decl_var |
+     {prod_decl_const} prod_decl_const
+     ;
+
+    programa_dir =
+     {prod_decl_procedimento} prod_decl_procedimento |
+     {prod_decl_funcao} prod_decl_funcao
+     ;
+
+    prod_decl_var =
+     {var_id} decl_var dois_pontos tipo id ponto_virgula |
+     {var_id_atribuicao} decl_var dois_pontos tipo id_atribuicao ponto_virgula
+     ;
+
+    prod_decl_const =
+     {constante} [tipo]:tipo [id_atribuicao]:id_atribuicao
+     ;
+
+    id_atribuicao =
+     {id_atribuicao} [valor]: valor [exp]: exp
+     ;
+
+    // array_comp =
+    //  {array_comp} col_esq id barra exp col_dir
+    //  ;
+
+    tipo =
+     {tipo_base} tipo_base |
+     {tipo_exp} tipo [exp]: exp 
+     ;
+
+    tipo_base =
+     {tipo_inteiro} tipo_inteiro |
+     {tipo_booleano} tipo_booleano |
+     {tipo_real} tipo_real |
+     {tipo_cadeia} tipo_cadeia
+     ;
+
+    prod_decl_procedimento =
+     {prod_decl_procedimento} partida? decl_procedimento dois_pontos id par_esq parametros par_dir comando
+     ;
+
+    prod_decl_funcao =
+     {prod_decl_funcao}  [tipo]: tipo [id]: id [parametros]: parametros [exp]: exp
+     ;
+
+    parametros =
+     {parametro} parametro barra_parametro* |
+     {vazio}
+     ;
+
+    barra_parametro =
+     {barra_parametro} barra parametro
+     ;
+
+    parametro =
+     {tipo_parametro} tipo_parametro id
+     ;
+
+    tipo_parametro =
+     {tipo_base} tipo_base |
+     {tipo_parametro} tipo_parametro col_esq col_dir
+     ;
+
+    comando_se_solteiro =
+     {comando_se_solteiro} exp comando |
+     {comando_se_senao_solteiro} exp [comando_se]: comando_se_casado [comando_senao]: comando_se_solteiro |
+     {enquanto_comando} exp comando_se_solteiro
+     ;
+
+    comando_se_casado =
+     {comando_se_senao_casado} exp [comando_se]: comando_se_casado [comando_senao]: comando_se_casado |
+     {enquanto_comando}  exp  comando_se_casado |
+     {id_atribuicao_comando} id_atribuicao |
+     {chamada_procedimento_comando} chamada_procedimento |
+     {bloco_comandos} bloco_comandos
+     ;
+
+    comando =
+     {comando_se_casado} comando_se_casado |
+     {comando_se_solteiro} comando_se_solteiro
+     ;
+
+    bloco_comandos =
+     {bloco_comandos} inicio_bloco programa_esq* comando* fim_bloco
+     ;
+
+    valor =
+     {valor} [id]: id |
+     {valor_array} [valor]: valor [exp]: exp
+     ;
+
+    // bloco_expressoes =
+    //  {bloco_expressoes} [lista_decl_const]: prod_decl_const* [exp]:exp
+    //  ;
+
+    chamada_procedimento =
+     {chamada} [id]: id [lista_exp]: exp*
+     ;
+
+    // lista_exp = 
+    //     | {ternario} ternario
+    //     | {lista_exp} ternario barra lista_exp
+    //     | {vazio};
+
+    // ternario =
+    //  {exp} exp |
+    //  {ternario} cmd_se par_esq exp par_dir [ternario_verdade]: ternario cmd_senao [ternario_falso]: ternario
+    //  ;
+
+    // barra_exp =
+    //  {barra_exp} barra ternario
+    //  ;
+
+    exp = 
+        {ou} [esquerda]: exp [direita]: exp
+        |{e} [esquerda]: exp [direita]: exp
+        |{igual} [esquerda]: exp [direita]: exp
+        |{maior_igual} [esquerda]: exp [direita]: exp
+        |{maior} [esquerda]: exp [direita]: exp
+        |{soma} [esquerda]: exp [direita]: exp
+        |{menos} [esquerda]: exp [direita]: exp
+        |{mult} [esquerda]: exp [direita]: exp
+        |{div} [esquerda]: exp [direita]: exp
+        |{mod} [esquerda]: exp [direita]: exp
+        |{ternario} [cond]: exp [verdadeiro]: exp [falso]: exp
+        |{negacao} exp
+        |{negativo} exp
+        |{numero_int} numero_int
         |{numero_real} numero_real
-        |{booleano} verdade | falso
         |{cadeia} cadeia
+        |{verdade} verdade
+        |{falso} falso
         |{valor} valor
-        |{chamada_funcao} chamada_funcao
-        |{array_comp} array_comp
-        |{bloco_expressoes} bloco_expressoes
-        |{par} par_esq ternario_exp par_dir;
+        |{chamada_funcao} [id]: id [lista_exp]:exp*
+        |{vazio}
+        |{bloco_expressoes} [lista_decl_const]: prod_decl_const* [exp]:exp
+        |{array_comp} [id]: id [exp]:exp;

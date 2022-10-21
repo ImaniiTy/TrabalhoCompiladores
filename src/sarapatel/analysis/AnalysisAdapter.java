@@ -129,12 +129,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAArrayCompArrayComp(AArrayCompArrayComp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseATipoBaseTipo(ATipoBaseTipo node)
     {
         defaultCase(node);
@@ -297,229 +291,145 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseABlocoExpressoesBlocoExpressoes(ABlocoExpressoesBlocoExpressoes node)
+    public void caseAChamadaChamadaProcedimento(AChamadaChamadaProcedimento node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAChamadaFuncaoChamadaFuncao(AChamadaFuncaoChamadaFuncao node)
+    public void caseAOuExp(AOuExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAChamadaProcedimentoChamadaProcedimento(AChamadaProcedimentoChamadaProcedimento node)
+    public void caseAEExp(AEExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAListaExpListaExp(AListaExpListaExp node)
+    public void caseAIgualExp(AIgualExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAVazioListaExp(AVazioListaExp node)
+    public void caseAMaiorIgualExp(AMaiorIgualExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATernarioTernarioExp(ATernarioTernarioExp node)
+    public void caseAMaiorExp(AMaiorExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExpTernario(AExpTernario node)
+    public void caseASomaExp(ASomaExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATernarioTernario(ATernarioTernario node)
+    public void caseAMenosExp(AMenosExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseABarraExpBarraExp(ABarraExpBarraExp node)
+    public void caseAMultExp(AMultExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAPrio1Exp(APrio1Exp node)
+    public void caseADivExp(ADivExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseACompOuExp(ACompOuExp node)
+    public void caseAModExp(AModExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAPrio2Prio1(APrio2Prio1 node)
+    public void caseATernarioExp(ATernarioExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseACompEPrio1(ACompEPrio1 node)
+    public void caseANegacaoExp(ANegacaoExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAPrio3Prio2(APrio3Prio2 node)
+    public void caseANegativoExp(ANegativoExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIgualPrio2(AIgualPrio2 node)
+    public void caseANumeroIntExp(ANumeroIntExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAPrio4Prio3(APrio4Prio3 node)
+    public void caseANumeroRealExp(ANumeroRealExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMaiorIgualPrio3(AMaiorIgualPrio3 node)
+    public void caseACadeiaExp(ACadeiaExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMaiorPrio3(AMaiorPrio3 node)
+    public void caseAVerdadeExp(AVerdadeExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAPrio5Prio4(APrio5Prio4 node)
+    public void caseAFalsoExp(AFalsoExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseASomaPrio4(ASomaPrio4 node)
+    public void caseAValorExp(AValorExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMenosPrio4(AMenosPrio4 node)
+    public void caseAChamadaFuncaoExp(AChamadaFuncaoExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAPrio6Prio5(APrio6Prio5 node)
+    public void caseAVazioExp(AVazioExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMultPrio5(AMultPrio5 node)
+    public void caseABlocoExpressoesExp(ABlocoExpressoesExp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseADivPrio5(ADivPrio5 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAModPrio5(AModPrio5 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAPrio7Prio6(APrio7Prio6 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseANegacaoPrio6(ANegacaoPrio6 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseANegativoPrio6(ANegativoPrio6 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseANumeroIntPrio7(ANumeroIntPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseANumeroRealPrio7(ANumeroRealPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseABooleanoPrio7(ABooleanoPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAPrio7(APrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseACadeiaPrio7(ACadeiaPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAValorPrio7(AValorPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAChamadaFuncaoPrio7(AChamadaFuncaoPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAArrayCompPrio7(AArrayCompPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseABlocoExpressoesPrio7(ABlocoExpressoesPrio7 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAParPrio7(AParPrio7 node)
+    public void caseAArrayCompExp(AArrayCompExp node)
     {
         defaultCase(node);
     }

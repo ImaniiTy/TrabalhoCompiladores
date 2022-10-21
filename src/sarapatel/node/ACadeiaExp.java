@@ -5,46 +5,46 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
+public final class ACadeiaExp extends PExp
 {
-    private PIdAtribuicao _idAtribuicao_;
+    private TCadeia _cadeia_;
 
-    public AIdAtribuicaoComandoComandoSeCasado()
+    public ACadeiaExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoComandoComandoSeCasado(
-        @SuppressWarnings("hiding") PIdAtribuicao _idAtribuicao_)
+    public ACadeiaExp(
+        @SuppressWarnings("hiding") TCadeia _cadeia_)
     {
         // Constructor
-        setIdAtribuicao(_idAtribuicao_);
+        setCadeia(_cadeia_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoComandoComandoSeCasado(
-            cloneNode(this._idAtribuicao_));
+        return new ACadeiaExp(
+            cloneNode(this._cadeia_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoComandoComandoSeCasado(this);
+        ((Analysis) sw).caseACadeiaExp(this);
     }
 
-    public PIdAtribuicao getIdAtribuicao()
+    public TCadeia getCadeia()
     {
-        return this._idAtribuicao_;
+        return this._cadeia_;
     }
 
-    public void setIdAtribuicao(PIdAtribuicao node)
+    public void setCadeia(TCadeia node)
     {
-        if(this._idAtribuicao_ != null)
+        if(this._cadeia_ != null)
         {
-            this._idAtribuicao_.parent(null);
+            this._cadeia_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
             node.parent(this);
         }
 
-        this._idAtribuicao_ = node;
+        this._cadeia_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._idAtribuicao_);
+            + toString(this._cadeia_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._idAtribuicao_ == child)
+        if(this._cadeia_ == child)
         {
-            this._idAtribuicao_ = null;
+            this._cadeia_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._idAtribuicao_ == oldChild)
+        if(this._cadeia_ == oldChild)
         {
-            setIdAtribuicao((PIdAtribuicao) newChild);
+            setCadeia((TCadeia) newChild);
             return;
         }
 

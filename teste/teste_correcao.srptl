@@ -1,4 +1,4 @@
-procedimento: diferentes()
+procedimento: ast()
 comece 
-imprima(se (verdade) 'true' senao 'false');
+imprima(2+3);
 termine

@@ -5,46 +5,46 @@ package sarapatel.node;
 import sarapatel.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
+public final class AVerdadeExp extends PExp
 {
-    private PIdAtribuicao _idAtribuicao_;
+    private TVerdade _verdade_;
 
-    public AIdAtribuicaoComandoComandoSeCasado()
+    public AVerdadeExp()
     {
         // Constructor
     }
 
-    public AIdAtribuicaoComandoComandoSeCasado(
-        @SuppressWarnings("hiding") PIdAtribuicao _idAtribuicao_)
+    public AVerdadeExp(
+        @SuppressWarnings("hiding") TVerdade _verdade_)
     {
         // Constructor
-        setIdAtribuicao(_idAtribuicao_);
+        setVerdade(_verdade_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIdAtribuicaoComandoComandoSeCasado(
-            cloneNode(this._idAtribuicao_));
+        return new AVerdadeExp(
+            cloneNode(this._verdade_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIdAtribuicaoComandoComandoSeCasado(this);
+        ((Analysis) sw).caseAVerdadeExp(this);
     }
 
-    public PIdAtribuicao getIdAtribuicao()
+    public TVerdade getVerdade()
     {
-        return this._idAtribuicao_;
+        return this._verdade_;
     }
 
-    public void setIdAtribuicao(PIdAtribuicao node)
+    public void setVerdade(TVerdade node)
     {
-        if(this._idAtribuicao_ != null)
+        if(this._verdade_ != null)
         {
-            this._idAtribuicao_.parent(null);
+            this._verdade_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
             node.parent(this);
         }
 
-        this._idAtribuicao_ = node;
+        this._verdade_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._idAtribuicao_);
+            + toString(this._verdade_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._idAtribuicao_ == child)
+        if(this._verdade_ == child)
         {
-            this._idAtribuicao_ = null;
+            this._verdade_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIdAtribuicaoComandoComandoSeCasado extends PComandoSeCasado
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._idAtribuicao_ == oldChild)
+        if(this._verdade_ == oldChild)
         {
-            setIdAtribuicao((PIdAtribuicao) newChild);
+            setVerdade((TVerdade) newChild);
             return;
         }
 

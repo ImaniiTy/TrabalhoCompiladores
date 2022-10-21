@@ -8,9 +8,7 @@ import sarapatel.analysis.*;
 public final class ATipoExpTipo extends PTipo
 {
     private PTipo _tipo_;
-    private TColEsq _colEsq_;
-    private PTernarioExp _ternarioExp_;
-    private TColDir _colDir_;
+    private PExp _exp_;
 
     public ATipoExpTipo()
     {
@@ -19,18 +17,12 @@ public final class ATipoExpTipo extends PTipo
 
     public ATipoExpTipo(
         @SuppressWarnings("hiding") PTipo _tipo_,
-        @SuppressWarnings("hiding") TColEsq _colEsq_,
-        @SuppressWarnings("hiding") PTernarioExp _ternarioExp_,
-        @SuppressWarnings("hiding") TColDir _colDir_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
         setTipo(_tipo_);
 
-        setColEsq(_colEsq_);
-
-        setTernarioExp(_ternarioExp_);
-
-        setColDir(_colDir_);
+        setExp(_exp_);
 
     }
 
@@ -39,9 +31,7 @@ public final class ATipoExpTipo extends PTipo
     {
         return new ATipoExpTipo(
             cloneNode(this._tipo_),
-            cloneNode(this._colEsq_),
-            cloneNode(this._ternarioExp_),
-            cloneNode(this._colDir_));
+            cloneNode(this._exp_));
     }
 
     @Override
@@ -75,16 +65,16 @@ public final class ATipoExpTipo extends PTipo
         this._tipo_ = node;
     }
 
-    public TColEsq getColEsq()
+    public PExp getExp()
     {
-        return this._colEsq_;
+        return this._exp_;
     }
 
-    public void setColEsq(TColEsq node)
+    public void setExp(PExp node)
     {
-        if(this._colEsq_ != null)
+        if(this._exp_ != null)
         {
-            this._colEsq_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -97,57 +87,7 @@ public final class ATipoExpTipo extends PTipo
             node.parent(this);
         }
 
-        this._colEsq_ = node;
-    }
-
-    public PTernarioExp getTernarioExp()
-    {
-        return this._ternarioExp_;
-    }
-
-    public void setTernarioExp(PTernarioExp node)
-    {
-        if(this._ternarioExp_ != null)
-        {
-            this._ternarioExp_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ternarioExp_ = node;
-    }
-
-    public TColDir getColDir()
-    {
-        return this._colDir_;
-    }
-
-    public void setColDir(TColDir node)
-    {
-        if(this._colDir_ != null)
-        {
-            this._colDir_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._colDir_ = node;
+        this._exp_ = node;
     }
 
     @Override
@@ -155,9 +95,7 @@ public final class ATipoExpTipo extends PTipo
     {
         return ""
             + toString(this._tipo_)
-            + toString(this._colEsq_)
-            + toString(this._ternarioExp_)
-            + toString(this._colDir_);
+            + toString(this._exp_);
     }
 
     @Override
@@ -170,21 +108,9 @@ public final class ATipoExpTipo extends PTipo
             return;
         }
 
-        if(this._colEsq_ == child)
+        if(this._exp_ == child)
         {
-            this._colEsq_ = null;
-            return;
-        }
-
-        if(this._ternarioExp_ == child)
-        {
-            this._ternarioExp_ = null;
-            return;
-        }
-
-        if(this._colDir_ == child)
-        {
-            this._colDir_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -201,21 +127,9 @@ public final class ATipoExpTipo extends PTipo
             return;
         }
 
-        if(this._colEsq_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setColEsq((TColEsq) newChild);
-            return;
-        }
-
-        if(this._ternarioExp_ == oldChild)
-        {
-            setTernarioExp((PTernarioExp) newChild);
-            return;
-        }
-
-        if(this._colDir_ == oldChild)
-        {
-            setColDir((TColDir) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
